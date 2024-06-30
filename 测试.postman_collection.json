@@ -963,18 +963,84 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTI5MjI1OTQsImlkIjoyfQ.1buqy8PRWbhQLbaXV8Of5FCuSEbetwYzkfEerNUG9e4",
-						"type": "text"
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY1Njg4MDAsIm9wZW5pZCI6InRlc3QiLCJpZCI6MX0.bUYBEpmN-syYySDwhWzjDu-eSGJC3TyPghauoUfa4dY"
 					}
 				],
 				"url": {
-					"raw": "http://127.0.0.1:8000/user/Limit/",
+					"raw": "http://10.21.235.116:8000/user/Limit/",
 					"protocol": "http",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"10",
+						"21",
+						"235",
+						"116"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"Limit",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "限行数据获取 Copy",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY1Njg4MDAsIm9wZW5pZCI6InRlc3QiLCJpZCI6MX0.bUYBEpmN-syYySDwhWzjDu-eSGJC3TyPghauoUfa4dY"
+					}
+				],
+				"url": {
+					"raw": "http://10.21.235.116:8000/user/Limit/",
+					"protocol": "http",
+					"host": [
+						"10",
+						"21",
+						"235",
+						"116"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"Limit",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "限行数据获取 Copy",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY1Njg4MDAsIm9wZW5pZCI6InRlc3QiLCJpZCI6MX0.bUYBEpmN-syYySDwhWzjDu-eSGJC3TyPghauoUfa4dY"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"limit_mon\": \"12\",\r\n        \"limit_tue\":\"34\",\r\n        \"limit_wed\":\"56\",\r\n        \"limit_thu\": \"78\",\r\n        \"limit_fri\": \"None\",\r\n        \"limit_sat\": \"56\",\r\n        \"limit_sun\":\"45\",\r\n        \"limit_date_start\": \"2024-05-23\",\r\n        \"limit_date_end\": \"2024-05-29\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.21.235.116:8000/user/Limit/",
+					"protocol": "http",
+					"host": [
+						"10",
+						"21",
+						"235",
+						"116"
 					],
 					"port": "8000",
 					"path": [
@@ -988,6 +1054,126 @@
 		},
 		{
 			"name": "限行数据修改",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTI5MjkwOTgsIm9wZW5pZCI6IlVzZXIoMSkiLCJpZCI6MX0.5RBDPHu2uO__fjnp5ZBKv656ymm-77NxfzNLIBkXDtw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"limit_mon\": \"12\",\r\n        \"limit_tue\":\"34\",\r\n        \"limit_wed\":\"56\",\r\n        \"limit_thu\": \"78\",\r\n        \"limit_fri\": \"None\",\r\n        \"limit_sat\": \"56\",\r\n        \"limit_sun\":\"45\",\r\n        \"limit_date_start\": \"2024-04-15\",\r\n        \"limit_date_end\": \"2024-04-19\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.21.235.116:8000/user/LimitDetail/1/",
+					"protocol": "http",
+					"host": [
+						"10",
+						"21",
+						"235",
+						"116"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"LimitDetail",
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "限行数据修改 Copy",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTI5MjkwOTgsIm9wZW5pZCI6IlVzZXIoMSkiLCJpZCI6MX0.5RBDPHu2uO__fjnp5ZBKv656ymm-77NxfzNLIBkXDtw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"limit_mon\": \"12\",\r\n        \"limit_tue\":\"34\",\r\n        \"limit_wed\":\"56\",\r\n        \"limit_thu\": \"78\",\r\n        \"limit_fri\": \"None\",\r\n        \"limit_sat\": \"56\",\r\n        \"limit_sun\":\"45\",\r\n        \"limit_date_start\": \"2024-04-15\",\r\n        \"limit_date_end\": \"2024-04-19\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.21.235.116:8000/user/LimitDetail/1/",
+					"protocol": "http",
+					"host": [
+						"10",
+						"21",
+						"235",
+						"116"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"LimitDetail",
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "限行数据修改 Copy",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTI5MjkwOTgsIm9wZW5pZCI6IlVzZXIoMSkiLCJpZCI6MX0.5RBDPHu2uO__fjnp5ZBKv656ymm-77NxfzNLIBkXDtw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"limit_mon\": \"12\",\r\n        \"limit_tue\":\"34\",\r\n        \"limit_wed\":\"56\",\r\n        \"limit_thu\": \"78\",\r\n        \"limit_fri\": \"None\",\r\n        \"limit_sat\": \"56\",\r\n        \"limit_sun\":\"45\",\r\n        \"limit_date_start\": \"2024-04-15\",\r\n        \"limit_date_end\": \"2024-04-19\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.21.235.116:8000/user/LimitDetail/1/",
+					"protocol": "http",
+					"host": [
+						"10",
+						"21",
+						"235",
+						"116"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"LimitDetail",
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "限行数据修改 Copy 2",
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -1058,6 +1244,37 @@
 		},
 		{
 			"name": "热线修改",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/user/HotlineDetail/1/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"HotlineDetail",
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "热线修改 Copy",
 			"request": {
 				"method": "PUT",
 				"header": [

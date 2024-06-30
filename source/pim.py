@@ -32,11 +32,7 @@ def pimui():
                 sidebar()
                 with ui.column().style("width:auto;flex-direction:column;align-self:flex-start;height:auto"):
                     ui.label('欢迎您: {}'.format(person['NAME']))
-                    with ui.card().style("width:auto;font-size:1.0rem;align-self:flex-start;height:auto"):
-                        ui.label('以下是您的个人信息:')
-                        ui.label('身份: {}'.format(__identify_id(person['ID'])))
-                        ui.label('电话: {}'.format(person['PHONE']))
-                        ui.label('账号: {}'.format(person['ACCOUNT']))
-                        with ui.row():
-                            ui.button('修改个人信息')
-                            ui.button('修改密码')
+                    ui.label('以下是您的个人信息:').style('font-size:1.1rem')
+                    ui.label('身份: {}'.format(__identify_id(person['ID']))).style('font-size:1.1rem')
+                    ui.label('电话: {}'.format(person['PHONE'])).style('font-size:1.1rem')
+                    ui.label('账号: {}'.format(person['ACCOUNT'])).style('font-size:1.1rem')

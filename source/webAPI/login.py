@@ -21,3 +21,13 @@ def getToken():
 def logout():
     global TOKEN
     TOKEN = ""
+
+def update_password(url,code,recode):
+    data = {'manager_code': code, 'manager_recode': recode}
+    headers = {'Content-type': 'application/json','Authorization':getToken()}
+    response = requests.put(url, data=json.dumps(data), headers=headers)
+    res=response.json()
+    if res["code"]==200:
+        return {"msg":"修改成功","code":1}
+    else:
+        return {"msg":"修改失败","code":0}

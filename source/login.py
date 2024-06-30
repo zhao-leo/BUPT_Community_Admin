@@ -2,8 +2,6 @@
 from nicegui import ui
 from source.webAPI.login import login
 from API import loginapi
-# from niceguiToolkit.layout import inject_layout_tool
-# inject_layout_tool()
 
 def __login(username, password):
     url = loginapi()
