@@ -2,8 +2,11 @@ from nicegui import app,ui
 from source.login import loginui
 from source.pim import pimui
 from source.suggestion.suggestion_untreated import suggestionui
-# from niceguiToolkit.layout import inject_layout_tool
-# inject_layout_tool()
+from source.suggestion.suggestion_template import suggestion_num
+from source.complaint.complaint_untreated import complaintui
+from source.complaint.complaint_template import complaint_num
+from source.limit import limitui
+
 TOKEN = ""
 @ui.page('/')
 def index():
@@ -21,8 +24,23 @@ def index():
 def index():
     suggestionui()
 
-@ui.page('/suggestion/treated')
-def index():
-    ui.notify('已处理建议',position='top',type='info')
+@ui.page('/suggestion/{id}')
+def index(id: int):
+    suggestion_num(id)
 
-ui.run()
+@ui.page('/complaint')
+def index():
+    ui.navigate.to('/complaint/untreated')
+
+@ui.page('/complaint/untreated')
+def index():
+    complaintui()
+
+@ui.page('/complaint/{id}')
+def index(id: int):
+    complaint_num(id)
+
+@ui.page('/carlimit')
+def index():
+    limitui()
+ui.run(port=5000)

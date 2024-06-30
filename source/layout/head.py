@@ -45,10 +45,11 @@ def header():
             ui.button('取消',on_click=dialog2.close)
             ui.button('提交', on_click=lambda:handlepim(pimapi(),account.value,name.value,phone.value))
 
-    with ui.row().classes('w-full items-center').style("width:100%"):
-        ui.label('社区反馈管理系统').classes('mr-auto')
-        with ui.button(icon='menu'):
-            with ui.menu():
-                ui.menu_item('修改个人信息',on_click=dialog2.open)
-                ui.menu_item('修改密码',on_click=dialog1.open)
-                ui.menu_item('退出当前账户', on_click=log_out)
+    with ui.card().style('width:100%; margin: auto;'):
+        with ui.row().classes('w-full items-center').style("width:100%"):
+            ui.label('社区反馈管理系统').classes('mr-auto')
+            with ui.button(text='账户设置',icon='menu'):
+                with ui.menu():
+                    ui.menu_item('修改个人信息', on_click=dialog2.open)
+                    ui.menu_item('修改密码', on_click=dialog1.open)
+                    ui.menu_item('退出当前账户', on_click=log_out)
