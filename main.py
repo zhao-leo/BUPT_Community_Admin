@@ -12,10 +12,13 @@ def index():
 @ui.page('/home')
 def index():
     pimui()
+
 @ui.page('/suggestion')
 def index():
     ui.navigate.to('/suggestion/untreated')
+
 @ui.page('/suggestion/untreated')
 def index():
     suggestionui()
+
 ui.run()

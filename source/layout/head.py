@@ -11,4 +11,3 @@ def header():
         with ui.button(icon='menu'):
             with ui.menu():
                 ui.menu_item('登出', on_click=log_out)
-    
