@@ -21,4 +21,8 @@ def index():
 def index():
     suggestionui()
 
+@ui.page('/suggestion/treated')
+def index():
+    ui.notify('已处理建议',position='top',type='info')
+
 ui.run()
