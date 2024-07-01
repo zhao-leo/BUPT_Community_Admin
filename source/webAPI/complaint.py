@@ -1,5 +1,4 @@
 import requests
-import json
 from source.webAPI.login import getToken
 from source.webAPI.pim import getInf
 def get_complaint(url):

@@ -43,4 +43,8 @@ def index(id: int):
 @ui.page('/carlimit')
 def index():
     limitui()
+
+@ui.page('/community')
+def index():
+    ui.navigate.to('/home')
 ui.run(port=5000)
