@@ -3,6 +3,7 @@ from nicegui import ui
 from source.layout.head import header
 from source.layout.sidebar import sidebar
 from source.webAPI.complaint import complaint_single,reply_complaint
+from source.webAPI.pim import getInf
 # from niceguiToolkit.layout import inject_layout_tool
 # inject_layout_tool()
 
@@ -16,6 +17,7 @@ def __handle_reply(getid,content,way,name,tel,status):
         ui.notify(res['msg'],position='top',type='warning')
 
 def complaint_num(id):
+    ui.page_title('诉求-{}-{}'.format(id,getInf()['NAME']))
     try:
         res = complaint_single(replycomplaint(),id)
     except:

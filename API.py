@@ -21,3 +21,7 @@ def hotlinedetail():
   return BASE_URL+'user/HotlineDetail/'
 def warmnotice():
   return BASE_URL+'user/Warn/'
+def picture():
+  return BASE_URL+'user/Cover/'
+def picDetail():
+  return BASE_URL+'user/CoverDetail/'

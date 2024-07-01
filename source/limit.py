@@ -1,10 +1,12 @@
 from source.webAPI.limit import get_limit
+from source.webAPI.pim import getInf
 from nicegui import ui
 from API import carlimit
 from source.layout.head import header
 from source.layout.sidebar import sidebar
 
 def limitui():
+    ui.page_title('车辆限行-{}'.format(getInf()['NAME']))
     res=get_limit(carlimit())
     if res['code']==200:
       with ui.column().style("font-size:1.5rem;width:100%;height:auto"):

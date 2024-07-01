@@ -3,7 +3,7 @@ from nicegui import ui
 # inject_layout_tool()
 def sidebar():
     with ui.card():
-        with ui.column().style("height:100vh;width:auto;font-size:1.0rem"):
+        with ui.column().style("height:100%;width:auto;font-size:1.0rem"):
             ui.item('欢迎',on_click=lambda: ui.navigate.to('/home'))
 
             with ui.expansion('社区建议'):

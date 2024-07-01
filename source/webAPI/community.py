@@ -53,3 +53,20 @@ def update_warmtext(url,text):
         return response.json()['message']
     else:
         return '修改失败'
+
+def get_picture(url):
+    headers = {'Content-type': 'application/json','Authorization':getToken()}
+    response = requests.get(url, headers=headers)
+    res=response.json()
+    return res['data']
+
+def upload_pic(url,fileb64):
+    headers = {'Authorization':getToken()}
+    files = {"cover_file":fileb64}
+    response = requests.post(url, headers=headers, files=files)
+    return response.json()
+
+def delete_pic(url,id):
+    headers = {'Authorization':getToken()}
+    response = requests.delete(f"{url}{id}/", headers=headers)
+    return response.json()

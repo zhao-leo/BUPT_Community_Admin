@@ -3,6 +3,7 @@ from nicegui import ui
 from source.layout.head import header
 from source.layout.sidebar import sidebar
 from source.webAPI.suggestion import suggestion_single,reply_suggestion
+from source.webAPI.pim import getInf
 # from niceguiToolkit.layout import inject_layout_tool
 # inject_layout_tool()
 
@@ -16,6 +17,7 @@ def __handle_reply(getid,content,way,name,tel,status):
         ui.notify(res['msg'],position='top',type='warning')
 
 def suggestion_num(id):
+    ui.page_title('建议-{}-{}'.format(id,getInf()['NAME']))
     try:
         res = suggestion_single(replysuggestion(),id)
     except:

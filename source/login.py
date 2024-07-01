@@ -13,6 +13,7 @@ def __login(username, password):
         ui.notify(res["msg"],position='top',type='warning')
 
 def loginui():
+    ui.page_title('登录')
     with ui.column(align_items='center').style("height:100vh;width:100%;flex-direction:column").classes('w-full h-full flex justify-center items-center'):
         ui.label('欢迎使用社区反馈管理系统').style("width:auto;height:auto;align-self:center").style("font-size:2.0rem")
         with ui.card():
