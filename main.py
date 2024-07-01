@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from nicegui import app,ui
 from source.login import loginui
 from source.pim import pimui

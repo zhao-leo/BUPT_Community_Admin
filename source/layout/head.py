@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from nicegui import ui
 from source.webAPI.login import logout,update_password
 from source.webAPI.pim import update_pim,getInf

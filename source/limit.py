@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from source.webAPI.limit import get_limit
 from source.webAPI.pim import getInf
 from nicegui import ui
@@ -56,7 +57,6 @@ def limitui():
                               thu=ui.input('星期四')
                               fri=ui.input('星期五')
                       ui.button('提交更改')
-
 
     else:
         ui.notify(res['message'],position='top',type='warning')

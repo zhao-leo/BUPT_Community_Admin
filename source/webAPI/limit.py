@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import requests
 from source.webAPI.login import getToken
 def get_limit(url):

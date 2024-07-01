@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from nicegui import ui
 from source.webAPI.complaint import get_complaint
 from source.webAPI.pim import getInf
@@ -6,9 +7,6 @@ from API import complaintAll
 from source.layout.sidebar import sidebar
 from source.layout.head import header
 
-
-# from niceguiToolkit.layout import inject_layout_tool
-# inject_layout_tool()
 def complaintui():
     ui.page_title('建议列表-{}'.format(getInf()['NAME']))
     res=get_complaint(complaintAll())
@@ -36,7 +34,6 @@ def complaintui():
 
                         </q-td>
                     ''')
-
 
     else:
         ui.notify(res["message"],position='top',type='warning')

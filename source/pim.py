@@ -1,13 +1,10 @@
+# -*- coding: utf-8 -*-
 from nicegui import ui
 from source.webAPI.pim import get_pim,getInf
 from API import pimapi
 
 from source.layout.sidebar import sidebar
 from source.layout.head import header
-
-# from niceguiToolkit.layout import inject_layout_tool
-# inject_layout_tool()
-
 
 def __get__pim():
     url = pimapi()

@@ -1,5 +1,5 @@
+# -*- coding: utf-8 -*-
 BASE_URL='http://127.0.0.1:8000/'
-
 
 def loginapi():
   return BASE_URL+'user/ManagerLogin/'

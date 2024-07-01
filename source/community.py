@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from nicegui import ui,events
 from source.webAPI.community import get_hotline,update_hotline,add_hotline,remove_hotline,\
 get_warmtext,update_warmtext,get_picture,upload_pic,delete_pic
@@ -6,10 +7,6 @@ from API import hotline,hotlinedetail,warmnotice,picture,picDetail
 
 from source.layout.sidebar import sidebar
 from source.layout.head import header
-
-
-# from niceguiToolkit.layout import inject_layout_tool
-# inject_layout_tool()
 
 def hotlineUpdate(url,id,name,phone):
     with ui.dialog() as dialog1,ui.card():
@@ -83,7 +80,6 @@ def del_pic(id):
         ui.navigate.to('/community')
     else:
         ui.notify('删除失败')
-    
 
 def communityui():
     ui.page_title('社区管理-{}'.format(getInf()['NAME']))

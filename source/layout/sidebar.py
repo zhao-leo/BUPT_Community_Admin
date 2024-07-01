@@ -1,6 +1,6 @@
+# -*- coding: utf-8 -*-
 from nicegui import ui
-# from niceguiToolkit.layout import inject_layout_tool
-# inject_layout_tool()
+
 def sidebar():
     with ui.card():
         with ui.column().style("height:100%;width:auto;font-size:1.0rem"):
