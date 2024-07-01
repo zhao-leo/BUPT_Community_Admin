@@ -25,7 +25,7 @@ def suggestionui():
                         {'name': 'time', 'label': '提交时间', 'field': 'time','align': 'left'},
                         {'name': 'link', 'label': '回复', 'field': 'link','align': 'left'}
                     ]
-                    rows = [{'id':i['id'],'name':i['sugg_name'],'content':i['sugg_text'],'site':i['sugg_site'],'time':i['sugg_sub_time'].split('T')[0],'link':'/suggestion/{}'.format(i['id'])} for i in res['data']]
+                    rows = [{'id':i['id'],'name':i['sugg_name'],'content':i['sugg_text'],'site':i['sugg_site'],'time':i['sugg_sub_time'].split('T')[0],'link':'/suggestion/untreated/{}'.format(i['id'])} for i in res['data']]
                     table=ui.table(columns=columns, rows=rows, row_key='id',pagination=15).style("width:100%")
                     table.add_slot('body-cell-link', '''
                         <q-td :props="props">

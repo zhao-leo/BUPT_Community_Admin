@@ -24,7 +24,7 @@ def index():
 def index():
     suggestionui()
 
-@ui.page('/suggestion/{id}')
+@ui.page('/suggestion/untreated/{id}')
 def index(id: int):
     suggestion_num(id)
 
@@ -36,7 +36,7 @@ def index():
 def index():
     complaintui()
 
-@ui.page('/complaint/{id}')
+@ui.page('/complaint/untreated/{id}')
 def index(id: int):
     complaint_num(id)
 
