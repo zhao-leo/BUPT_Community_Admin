@@ -1,44 +1,44 @@
-A python admin Based NiceGUI
+# A python admin Based NiceGUI
 
-# from niceguiToolkit.layout import inject_layout_tool
-# inject_layout_tool()
+这是与一个django后端匹配的内容管理后台，主要负责处理反馈事项，与前端微信小程序共同构成一个整体。
 
-with ui.dialog() as dialog,ui.card().style('width:80%'):
-    with ui.column():
-        with ui.row():
-            ui.label('建议人')
-            ui.label('{}'.format(i['sugg_name']))
-        with ui.row():
-            ui.label('建议地点')
-            ui.label('{}'.format(i['sugg_site']))
-        with ui.row():
-            ui.label('联系电话')
-            ui.label('{}'.format(i['sugg_user_tele']))
-        with ui.row():
-            ui.label('提交时间')
-            formatted_date = i["sugg_sub_time"].split('T')[0]
-            ui.label(f'{formatted_date}')
-        with ui.row():
-            ui.label('联系内容')
-            ui.label('{}'.format(i['sugg_text']))
-    with ui.row():
-        with ui.column():
-            name=ui.input(label='回复人',validation={'人名不能为空': lambda value: len(value) >= 0})
-            content=ui.textarea(label='回复内容',validation={'回复内容不能为空': lambda value: len(value) >= 0})
-        with ui.column():
-            tele=ui.input(label='联系电话',validation={'请正确填写电话号码': lambda value: len(value) == 11 and value.isdigit()})
-            way=ui.input(label='解决方式',validation={'解决方式不能为空': lambda value: len(value) >= 0})
-            with ui.row():
-                ui.button('提交',on_click=create_on_click_handler(int(i['id']),content.value,way.value,name.value,tele.value))
-                ui.button('取消',on_click=ui.notify(content.value))
+文件树如下：
 
-def __handle_reply(getid,content,way,name,tel):
-    url = replysuggestion()
-    res = reply_suggestion(url,getid,content,way,name,tel)
-    if res['code']==200:
-        ui.notify(res['msg'],position='top',type='info')
-    else:
-        ui.notify(res['msg'],position='top',type='warning')
+```
+COMMUNITY-ADMIN
+│  .gitignore
+│  API.py
+│  main.py
+│  readme.md
+│  style.debug
+│  tree.txt
+└─source
+    │  community.py
+    │  limit.py
+    │  login.py
+    │  pim.py
+    │  
+    ├─complaint
+    │     complaint_template.py
+    │     complaint_untreated.py
+    │       
+    ├─layout
+    │      head.py
+    │      sidebar.py
+    │      
+    ├─suggestion
+    │      suggestion_template.py
+    │      suggestion_untreated.py
+    │      
+    └─webAPI
+            community.py
+            complaint.py
+            limit.py
+            login.py
+            pim.py
+            suggestion.py
+```
 
-def create_on_click_handler(sugg_id, content, way, name, tele):
-    return lambda: __handle_reply(sugg_id, content, way, name, tele)
+其中main.py是主程序入口，API.py包含所有接口，webAPI文件夹包含获取数据和存储数据两部分，没有启用Cookies，关闭即登出
+
+source中其他的文件都是页面文件，在main.py文件中注册
