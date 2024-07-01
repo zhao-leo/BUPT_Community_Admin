@@ -6,6 +6,7 @@ from source.suggestion.suggestion_template import suggestion_num
 from source.complaint.complaint_untreated import complaintui
 from source.complaint.complaint_template import complaint_num
 from source.limit import limitui
+from source.community import communityui
 
 TOKEN = ""
 @ui.page('/')
@@ -46,5 +47,5 @@ def index():
 
 @ui.page('/community')
 def index():
-    ui.navigate.to('/home')
+    communityui()
 ui.run(port=5000)

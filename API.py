@@ -15,3 +15,9 @@ def replysuggestion():
   return BASE_URL+'user/SuggestionListDetail/'
 def carlimit():
   return BASE_URL+'user/Limit/'
+def hotline():
+  return BASE_URL+'user/Hotline/'
+def hotlinedetail():
+  return BASE_URL+'user/HotlineDetail/'
+def warmnotice():
+  return BASE_URL+'user/Warn/'

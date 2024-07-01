@@ -16,6 +16,7 @@ def header():
             res=update_password(url,code,recode)
             if res["code"]==200:
                 ui.notify(res["msg"],position='top',type='postive')
+                ui.navigate.to('/home')
             else:
                 ui.notify(res["msg"],position='top',type='warning')
         code = ui.input(label='新密码', password=True,password_toggle_button=True)
@@ -29,6 +30,7 @@ def header():
             res=update_pim(url,account,name,phone)
             if res['code']==200:
                 ui.notify(res['msg'],position='top',type='postive')
+                ui.navigate.to('/home')
             else:
                 ui.notify(res['msg'],position='top',type='warning')
         with ui.row():
