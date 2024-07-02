@@ -49,4 +49,4 @@ def index():
 @ui.page('/community')
 def index():
     communityui()
-ui.run(port=8080)
+ui.run(host='0.0.0.0',port=9000,language='zh-cn')

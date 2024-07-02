@@ -2,7 +2,7 @@
 import os
 
 # BASE_URL=os.getenv('BASE_URL')+'/'
-BASE_URL='http://localhost:8000/'
+BASE_URL='http://10.21.235.116:8000/'
 def loginapi():
   return BASE_URL+'user/ManagerLogin/'
 def pimapi():
