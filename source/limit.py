@@ -19,7 +19,7 @@ def limitui():
                   with ui.column().style("width:100%;"):
                       ui.label('本周车辆限行信息').style('font-size:1.5rem')
                       columns = [
-                          {'name': 'week', 'label': '星期', 'field': 'week', 'align': 'left'},
+                          {'name':'week', 'label': '工作周', 'field':'week','align': 'left'},
                           {'name': 'mon', 'label': '星期一', 'field': 'mon','align': 'left'},
                           {'name': 'tue', 'label': '星期二', 'field': 'tue','align': 'left'},
                           {'name': 'wed', 'label': '星期三', 'field': 'wed','align': 'left'},
@@ -36,7 +36,7 @@ def limitui():
                       with ui.row():
                           with ui.input('开始日期') as date1:
                               with ui.menu() as menu:
-                                  with ui.date().bind_value(date1):
+                                  with ui.date().bind_value(date1) as startdate:
                                       with ui.row().classes('justify-end'):
                                           ui.button('关闭', on_click=menu.close).props('flat')
                               with date1.add_slot('append'):
@@ -44,7 +44,7 @@ def limitui():
 
                           with ui.input('结束日期') as date2:
                               with ui.menu() as menu:
-                                  with ui.date().bind_value(date2):
+                                  with ui.date().bind_value(date2) as enddate:
                                       with ui.row().classes('justify-end'):
                                           ui.button('关闭', on_click=menu.close).props('flat')
                               with date2.add_slot('append'):
