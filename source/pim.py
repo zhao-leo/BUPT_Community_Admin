@@ -5,6 +5,7 @@ from API import pimapi
 
 from source.layout.sidebar import sidebar
 from source.layout.head import header
+from source.layout.footer import footer
 
 def __get__pim():
     url = pimapi()
@@ -36,3 +37,4 @@ def pimui():
                             ui.label('身份: {}'.format(__identify_id(person['ID']))).style('font-size:1.1rem')
                             ui.label('电话: {}'.format(person['PHONE'])).style('font-size:1.1rem')
                             ui.label('账号: {}'.format(person['ACCOUNT'])).style('font-size:1.1rem')
+            footer()

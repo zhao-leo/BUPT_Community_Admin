@@ -5,6 +5,7 @@ from nicegui import ui
 from API import carlimit
 from source.layout.head import header
 from source.layout.sidebar import sidebar
+from source.layout.footer import footer
 
 def limitui():
     ui.page_title('车辆限行-{}'.format(getInf()['NAME']))
@@ -57,6 +58,7 @@ def limitui():
                               thu=ui.input('星期四')
                               fri=ui.input('星期五')
                       ui.button('提交更改')
+              footer()
 
     else:
         ui.notify(res['message'],position='top',type='warning')

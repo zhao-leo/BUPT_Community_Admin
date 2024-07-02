@@ -1,4 +1,6 @@
-FROM python:3.11
+FROM docker.anyhub.us.kg/library/python:3.11
+
+ENV BASE_URL=172.22.0.2:8000
 
 WORKDIR /app
 

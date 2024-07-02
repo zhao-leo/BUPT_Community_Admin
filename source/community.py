@@ -7,6 +7,7 @@ from API import hotline,hotlinedetail,warmnotice,picture,picDetail
 
 from source.layout.sidebar import sidebar
 from source.layout.head import header
+from source.layout.footer import footer
 
 def hotlineUpdate(url,id,name,phone):
     with ui.dialog() as dialog1,ui.card():
@@ -120,6 +121,7 @@ def communityui():
                                 with ui.carousel_slide().classes('p-0'):
                                     ui.button(text='删除当前图片',color='red').on_click(lambda i=i:del_pic(i['id'])).style('justify-content:flex-end;')
                                     ui.image(i['cover_file'])
+            footer()
     else:
         ui.notify(message='获取数据失败')
         ui.navigate.to('/home')

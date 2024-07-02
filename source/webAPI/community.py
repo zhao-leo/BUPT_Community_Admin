@@ -36,7 +36,7 @@ def remove_hotline(url,id):
     headers = {'Content-type': 'application/json','Authorization':getToken()}
     response = requests.delete(url+str(id)+'/', headers=headers)
     if response.json()['code'] == 200:
-        return response.json()['meaasge']
+        return response.json().get('message')
 
 def get_warmtext(url):
     headers = {'Content-type': 'application/json','Authorization':getToken()}

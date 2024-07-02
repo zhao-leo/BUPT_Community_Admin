@@ -5,6 +5,7 @@ from source.layout.head import header
 from source.layout.sidebar import sidebar
 from source.webAPI.suggestion import suggestion_single,reply_suggestion
 from source.webAPI.pim import getInf
+from source.layout.footer import footer
 
 def __handle_reply(getid,content,way,name,tel,status):
     url = replysuggestion()
@@ -39,7 +40,7 @@ def suggestion_num(id):
                 ]
                 sidebar()
                 with ui.card().style('flex:1'):
-                    with ui.column().style("width:100%;flex-direction:column;align-self:flex-start;height:100vh"):
+                    with ui.column().style("width:100%;flex-direction:column;align-self:flex-start;height:100%"):
                         ui.table(columns=columns, rows=rows, row_key='name').style('width:100%')
                         if res['data'][0]["suggestionmedia_set"]:
                             ui.label('附件图片：')
@@ -50,9 +51,10 @@ def suggestion_num(id):
                             name=ui.input(label='回复人',validation={'人名不能为空': lambda value: len(value) >= 0})
                             tele=ui.input(label='联系电话',validation={'请正确填写电话号码': lambda value: len(value) == 11 and value.isdigit()})
                             way=ui.input(label='解决方式',validation={'解决方式不能为空': lambda value: len(value) >= 0})
-                        switch = ui.switch('是否解决', value=True)
+                        switch = ui.switch('是否确认解决', value=True)
                         content=ui.textarea(label='回复内容',validation={'回复内容不能为空': lambda value: len(value) >= 0}).style('width:100%')
                         ui.button('提交',on_click=lambda: __handle_reply(id,content.value,way.value,name.value,tele.value,switch.value))
             else:
                 ui.notify(res['message'],position='top',type='warning')
                 ui.navigate.to('/suggestion/untreated')
+        footer()

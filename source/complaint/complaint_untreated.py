@@ -6,6 +6,7 @@ from API import complaintAll
 
 from source.layout.sidebar import sidebar
 from source.layout.head import header
+from source.layout.footer import footer
 
 def complaintui():
     ui.page_title('建议列表-{}'.format(getInf()['NAME']))
@@ -34,7 +35,7 @@ def complaintui():
 
                         </q-td>
                     ''')
-
+            footer()
     else:
         ui.notify(res["message"],position='top',type='warning')
         ui.navigate.to('/')
