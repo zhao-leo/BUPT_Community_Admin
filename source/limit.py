@@ -1,11 +1,16 @@
 # -*- coding: utf-8 -*-
 from source.webAPI.limit import get_limit
 from source.webAPI.pim import getInf
+from source.webAPI.limit import update
 from nicegui import ui
 from API import carlimit
 from source.layout.head import header
 from source.layout.sidebar import sidebar
 from source.layout.footer import footer
+def handle_click(start,end,mon,tue,wed,thu,fri):
+    res=update(carlimit(),start,end,mon,tue,wed,thu,fri)
+    ui.notify(res['message'],position='top')
+    ui.navigate.to('/carlimit')
 
 def limitui():
     ui.page_title('车辆限行-{}'.format(getInf()['NAME']))
@@ -27,7 +32,7 @@ def limitui():
                           {'name': 'fri', 'label': '星期五', 'field': 'fri','align': 'left'},
                       ]
                       rows = [
-                          {'week':'车牌尾号','mon': res['data']['limit_mon'],'tue': res['data']['limit_tue'],'wed':res['data']['limit_wed'],'thu': res['data']['limit_thu'],'fri': res['data']['limit_fri']}
+                          {'week':'车牌尾号','mon': res['data']['mon'],'tue': res['data']['tue'],'wed':res['data']['wed'],'thu': res['data']['thu'],'fri': res['data']['fri']}
                       ]
                       ui.table(columns=columns, rows=rows, row_key='week').style('width:100%')
 
@@ -57,7 +62,7 @@ def limitui():
                               wed=ui.input('星期三')
                               thu=ui.input('星期四')
                               fri=ui.input('星期五')
-                      ui.button('提交更改')
+                      ui.button('提交更改',on_click=lambda:handle_click(startdate.value,enddate.value,mon.value,tue.value,wed.value,thu.value,fri.value))
               footer()
 
     else:

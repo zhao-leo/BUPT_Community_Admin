@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from nicegui import app,ui
+from nicegui import ui
 from source.login import loginui
 from source.pim import pimui
 from source.suggestion.suggestion_untreated import suggestionui

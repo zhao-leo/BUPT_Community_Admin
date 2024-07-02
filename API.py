@@ -16,7 +16,7 @@ def suggestionAll():
 def replysuggestion():
   return BASE_URL+'user/SuggestionListDetail/'
 def carlimit():
-  return BASE_URL+'user/Limit/'
+  return BASE_URL+'user/LimitDetailNew/'
 def hotline():
   return BASE_URL+'user/Hotline/'
 def hotlinedetail():
@@ -31,3 +31,5 @@ def frequency():
   return BASE_URL+'user/Frequency/'
 def addadmin():
   return BASE_URL+'user/ManagerAdd/'
+def excel():
+  return BASE_URL+'user/GetExcelNew/'

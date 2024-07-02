@@ -7,15 +7,15 @@ def get_limit(url):
     res = response.json()
     return res
 
-def update(url,start,end,mon,tue,wed,thr,fri):
+def update(url,start,end,mon='未填写',tue='未填写',wed='未填写',thr='未填写',fri='未填写'):
     headers = {'Content-type': 'application/json','Authorization':getToken()}
     data={
-        "start":start,
-        "end":end,
+        "start_time":start,
+        "finish_time":end,
         "mon":mon,
         "tue":tue,
         "wed":wed,
-        "thr":thr,
+        "thu":thr,
         "fri":fri
     }
     response = requests.post(url, headers=headers,json=data)
