@@ -38,4 +38,4 @@ def suggestionui():
             footer()
     else:
         ui.notify(res["message"],position='top',type='warning')
-        ui.navigate.to('/')
+        ui.navigate.to('/home')
