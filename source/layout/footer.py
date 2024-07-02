@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 from nicegui import ui
+from source.webAPI.pim import Frequency
+from API import frequency
 
 def footer():
-    with ui.row().classes('w-full items-center').style("width:100%"):
-        ui.link('社区反馈管理系统','https://help.aliyun.com/zh/icp-filing/support/website-to-add-the-record-number-faq').style('font-size:1rem').classes('text-center w-full')
+    with ui.row().classes('w-full justify-center items-center'):
+        ui.link('社区反馈管理系统', 'https://help.aliyun.com/zh/icp-filing/support/website-to-add-the-record-number-faq').style('font-size:1rem; margin-right: 2rem;')
+        ui.label('用户访问量：{}'.format(Frequency(frequency()))).style('font-size:1rem')

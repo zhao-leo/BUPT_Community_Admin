@@ -27,3 +27,5 @@ def picture():
   return BASE_URL+'user/Cover/'
 def picDetail():
   return BASE_URL+'user/CoverDetail/'
+def frequency():
+  return BASE_URL+'user/Frequency/'

@@ -31,3 +31,12 @@ def update_pim(url,account,name,phone):
         return {"msg":"修改成功","code":200}
     else:
         return {"msg":"修改失败","code":0}
+
+def Frequency(url):
+    headers = {'Content-type': 'application/json','Authorization':getToken()}
+    response = requests.get(url, headers=headers)
+    res=response.json()
+    if res["code"]==200:
+        return res['data']
+    else:
+        return {"msg":"未知错误","code":0}
