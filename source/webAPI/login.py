@@ -32,3 +32,10 @@ def update_password(url,code,recode):
         return {"msg":"修改成功","code":1}
     else:
         return {"msg":"修改失败","code":0}
+
+def add_admin(url,account,code):
+    data = {'manager_account': account, 'manager_code': code}
+    headers = {'Content-type': 'application/json','Authorization':getToken()}
+    response = requests.post(url, data=json.dumps(data), headers=headers)
+    res=response.json()
+    return res

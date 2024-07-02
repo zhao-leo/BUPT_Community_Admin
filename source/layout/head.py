@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from nicegui import ui
-from source.webAPI.login import logout,update_password
+from source.webAPI.login import logout,update_password,add_admin
 from source.webAPI.pim import update_pim,getInf
-from API import pimapi
+from API import pimapi,addadmin
 
 def log_out():
     logout()
@@ -48,6 +48,21 @@ def header():
             ui.button('取消',on_click=dialog2.close)
             ui.button('提交', on_click=lambda:handlepim(pimapi(),account.value,name.value,phone.value))
 
+    with ui.dialog() as dialog3,ui.card():
+        def handleNewUser(url,account,code):
+            res=add_admin(url,account,code)
+            if res["code"]==200:
+                ui.notify(res["message"],position='top',type='postive')
+                ui.navigate.to('/home')
+            else:
+                ui.notify(res["message"],position='top',type='warning')
+        account = ui.input(label='登录名')
+        code = ui.input(label='密码', password=True,password_toggle_button=True)
+        with ui.row():
+            ui.button('取消',on_click=dialog3.close)
+            ui.button('提交', on_click=lambda:handleNewUser(addadmin(),account.value,code.value))
+        
+
     with ui.card().style('width:100%; margin: auto;'):
         with ui.row().classes('w-full items-center').style("width:100%"):
             ui.label('社区反馈管理系统').classes('mr-auto')
@@ -56,3 +71,5 @@ def header():
                     ui.menu_item('修改个人信息', on_click=dialog2.open)
                     ui.menu_item('修改密码', on_click=dialog1.open)
                     ui.menu_item('退出当前账户', on_click=log_out)
+                    if int(getInf()['ID'])<=3:
+                        ui.menu_item('用户管理', on_click=dialog3.open)

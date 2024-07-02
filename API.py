@@ -29,3 +29,5 @@ def picDetail():
   return BASE_URL+'user/CoverDetail/'
 def frequency():
   return BASE_URL+'user/Frequency/'
+def addadmin():
+  return BASE_URL+'user/ManagerAdd/'
