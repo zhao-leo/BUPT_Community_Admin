@@ -8,6 +8,4 @@ def get_excel(url,start_time,finish_time):
         'finish_time': finish_time
     }
     response = requests.post(url, headers=headers, json=data)
-    res =response.content
-    return res
-
+    return response.content

@@ -71,5 +71,5 @@ def header():
                     ui.menu_item('修改个人信息', on_click=dialog2.open)
                     ui.menu_item('修改密码', on_click=dialog1.open)
                     ui.menu_item('退出当前账户', on_click=log_out)
-                    if int(getInf()['ID'])<=3:
+                    if getInf()['ID']<=3:
                         ui.menu_item('用户管理', on_click=dialog3.open)

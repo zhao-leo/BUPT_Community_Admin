@@ -2,7 +2,8 @@
 import requests
 from source.webAPI.login import getToken
 import json
-ID,NAME,PHONE,ACCOUNT='','','',''
+NAME,PHONE,ACCOUNT='','',''
+ID=0
 def get_pim(url):
     headers = {'Content-type': 'application/json','Authorization':getToken()}
     response = requests.get(url, headers=headers)
