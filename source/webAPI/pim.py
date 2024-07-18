@@ -3,7 +3,7 @@ from source.webAPI.request import Request
 
 # 获取管理员信息
 def get_pim(url):
-    return Request('GET',url)
+    return Request('GET',url,{})
 
 # 更新个人信息
 def update_pim(url,account,name,phone):
@@ -12,4 +12,4 @@ def update_pim(url,account,name,phone):
 
 # 获取网站访问量
 def Frequency(url):
-    return Request('GET',url)
+    return Request('GET',url,{})

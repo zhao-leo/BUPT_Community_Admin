@@ -2,7 +2,7 @@
 from nicegui import ui
 
 def sidebar():
-    with ui.card():
+    with ui.left_drawer():
         with ui.column().style("height:100%;width:auto;font-size:1.0rem"):
             ui.item('欢迎',on_click=lambda: ui.navigate.to('/home'))
 

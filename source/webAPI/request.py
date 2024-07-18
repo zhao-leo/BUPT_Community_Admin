@@ -2,10 +2,10 @@ import requests
 import json
 from nicegui import app
 
-headers = {'Content-type': 'application/json','Authorization': app.storage.browser.get('token')}
+
 
 def Request(method: str,url: str, data: dict) -> dict:
-
+    headers = {'Content-type': 'application/json','Authorization': app.storage.user.get('TOKEN')}
     if method == 'GET':
         response = requests.get(url, headers=headers)
     elif method == 'POST':
@@ -21,10 +21,12 @@ def Request(method: str,url: str, data: dict) -> dict:
     return res
 
 def GetExcel(url:str, data: dict) -> bytes:
+    headers = {'Content-type': 'application/json','Authorization': app.storage.user.get('TOKEN')}
     response = requests.post(url, headers=headers, json=data)
     return response.content
 
 def FileUpload(url:str, data: dict) -> dict:
+    headers = {'Content-type': 'application/json','Authorization': app.storage.user.get('TOKEN')}
     response = requests.post(url, headers=headers, files=data)
     try:
         res = response.json()
