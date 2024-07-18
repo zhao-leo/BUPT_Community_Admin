@@ -1,8 +1,7 @@
 **/__pycache__
 **/*.pyc
 **/.venv
-ToDo
-style.debug
 *.tar
 tree.txt
 .docker_temp_408678287
+.dockerignore
