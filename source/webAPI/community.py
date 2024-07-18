@@ -1,73 +1,50 @@
 # -*- coding: utf-8 -*-
-import requests
-from source.webAPI.login import getToken
+from source.webAPI.request import Request,FileUpload
 
+# 获取热线电话
 def get_hotline(url):
-    headers = {'Content-type': 'application/json','Authorization':getToken()}
-    response = requests.get(url, headers=headers)
-    res=response.json()
-    return res
+    return Request('GET',url,{})
 
+# 修改热线电话
 def update_hotline(url,id,name,phone):
-    headers = {'Content-type': 'application/json','Authorization':getToken()}
     data = {
         "hotline_who":name,
         "hotline_tele":phone
     }
-    response = requests.put(url+str(id)+'/', headers=headers, json=data)
-    if response.json()['code'] == 200:
-        return response.json()['message']
-    else:
-        return '修改失败'
+    return Request('PUT',url+str(id)+'/',data)
 
+# 添加热线电话
 def add_hotline(url,name,phone):
-    headers = {'Content-type': 'application/json','Authorization':getToken()}
     data = {
         "hotline_who":name,
         "hotline_tele":phone
     }
-    response = requests.post(url, headers=headers, json=data)
-    if response.json()['code'] == 200:
-        return response.json()['message']
-    else:
-        return '添加失败'
+    return Request('POST',url,data)
 
+# 删除热线电话
 def remove_hotline(url,id):
-    headers = {'Content-type': 'application/json','Authorization':getToken()}
-    response = requests.delete(url+str(id)+'/', headers=headers)
-    if response.json()['code'] == 200:
-        return response.json().get('message')
+    return Request('DELETE',url+str(id)+'/',{})
 
+# 获取温馨提示
 def get_warmtext(url):
-    headers = {'Content-type': 'application/json','Authorization':getToken()}
-    response = requests.get(url, headers=headers)
-    res=response.json()
-    return res['data']["warn_text"]
+    return Request('GET',url,{})
 
+# 修改温馨提示
 def update_warmtext(url,text):
-    headers = {'Content-type': 'application/json','Authorization':getToken()}
     data = {
         "warn_text":text
     }
-    response = requests.post(url, headers=headers, json=data)
-    if response.json()['code'] == 200:
-        return response.json()['message']
-    else:
-        return '修改失败'
+    return Request('POST',url,data)
 
+# 获取图片
 def get_picture(url):
-    headers = {'Content-type': 'application/json','Authorization':getToken()}
-    response = requests.get(url, headers=headers)
-    res=response.json()
-    return res['data']
+    return Request('GET',url,{})
 
-def upload_pic(url,fileb64):
-    headers = {'Authorization':getToken()}
-    files = {"cover_file":fileb64}
-    response = requests.post(url, headers=headers, files=files)
-    return response.json()
+# 上传图片
+def upload_pic(url,file):
+    files = {"cover_file":file}
+    return FileUpload(url,files)
 
+# 删除图片
 def delete_pic(url,id):
-    headers = {'Authorization':getToken()}
-    response = requests.delete(f"{url}{id}/", headers=headers)
-    return response.json()
+    return Request('DELETE',url+str(id)+'/',{})

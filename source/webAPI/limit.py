@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
-import requests
-from source.webAPI.login import getToken
-def get_limit(url):
-    headers = {'Content-type': 'application/json','Authorization':getToken()}
-    response = requests.get(url, headers=headers)
-    res = response.json()
-    return res
+from source.webAPI.request import Request
 
-def update(url,start,end,mon='未填写',tue='未填写',wed='未填写',thr='未填写',fri='未填写'):
-    headers = {'Content-type': 'application/json','Authorization':getToken()}
+# 获取车辆限行信息
+def get_limit(url):
+    return Request('GET',url)
+
+# 更新车辆限行信息
+def update_limit(url,start,end,mon='未填写',tue='未填写',wed='未填写',thr='未填写',fri='未填写'):
     data={
         "start_time":start,
         "finish_time":end,
@@ -18,6 +16,4 @@ def update(url,start,end,mon='未填写',tue='未填写',wed='未填写',thr='�
         "thu":thr,
         "fri":fri
     }
-    response = requests.post(url, headers=headers,json=data)
-    res = response.json()
-    return res
+    return Request('POST',url,data)

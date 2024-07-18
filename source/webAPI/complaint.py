@@ -1,28 +1,22 @@
 # -*- coding: utf-8 -*-
-import requests
-from source.webAPI.login import getToken
-from source.webAPI.pim import getInf
-def get_complaint(url):
-    headers = {'Content-type': 'application/json','Authorization':getToken()}
-    response = requests.get(url, headers=headers)
-    res=response.json()
-    return res
+from source.webAPI.request import Request
 
-def reply_complaint(url,getid,content,way,name,tel,status=True):
-    headers = {'Content-type': 'application/json','Authorization':getToken()}
+# 获取投诉列表
+def get_complaint(url):
+    return Request('GET',url,{})
+
+# 回复投诉
+def reply_complaint(url,comp_id,pim_id,content,way,name,tel,status=True):
     data = {
         "comp_status": status,
         "comp_content": content,
         "comp_staff_name": name,
         "comp_staff_tele": tel,
         "comp_way": way,
-        "comp_handle_id": getInf()['ID']
+        "comp_handle_id": pim_id
     }
-    response = requests.put(f'{url}{getid}/', headers=headers, json=data)
-    return {"msg":response.json()['message'],'code':response.json()['code']}
+    return Request('PUT',f'{url}{comp_id}/',data)
 
+# 获取单个投诉
 def complaint_single(url,id):
-    headers = {'Content-type': 'application/json','Authorization':getToken()}
-    response = requests.get(f'{url}{id}/', headers=headers)
-    res=response.json()
-    return res
+    return Request('GET',f'{url}{id}/',{})

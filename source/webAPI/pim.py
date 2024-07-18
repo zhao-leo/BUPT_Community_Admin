@@ -1,43 +1,15 @@
 # -*- coding: utf-8 -*-
-import requests
-from source.webAPI.login import getToken
-import json
-NAME,PHONE,ACCOUNT='','',''
-ID=0
+from source.webAPI.request import Request
+
+# 获取管理员信息
 def get_pim(url):
-    headers = {'Content-type': 'application/json','Authorization':getToken()}
-    response = requests.get(url, headers=headers)
-    res=response.json()
-    if res["code"]==419:
-        return {'msg':'请重新登录','code':149}
-    elif res["code"]==200:
-        global ID,NAME,PHONE,ACCOUNT
-        ID=res["data"]["id"]
-        NAME=res["data"]["manager_name"]
-        PHONE=res["data"]["manager_tele"]
-        ACCOUNT=res["data"]["manager_account"]
-        return {'msg':'登录成功','code':200}
-    else:
-        return {'msg':'未知错误','code':0}
+    return Request('GET',url)
 
-def getInf():
-    return {'ID':ID,'NAME':NAME,'PHONE':PHONE,'ACCOUNT':ACCOUNT}
-
+# 更新个人信息
 def update_pim(url,account,name,phone):
     data = {'manager_name': name, 'manager_tele': phone, 'manager_account': account}
-    headers = {'Content-type': 'application/json','Authorization':getToken()}
-    response = requests.put(url, data=json.dumps(data), headers=headers)
-    res=response.json()
-    if res["code"]==200:
-        return {"msg":"修改成功","code":200}
-    else:
-        return {"msg":"修改失败","code":0}
+    return Request('PUT',url,data)
 
+# 获取网站访问量
 def Frequency(url):
-    headers = {'Content-type': 'application/json','Authorization':getToken()}
-    response = requests.get(url, headers=headers)
-    res=response.json()
-    if res["code"]==200:
-        return res['data']
-    else:
-        return {"msg":"未知错误","code":0}
+    return Request('GET',url)
