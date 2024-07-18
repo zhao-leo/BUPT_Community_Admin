@@ -6,7 +6,11 @@ from API import pimapi,addadmin
 
 # 定义logout函数,用于清除token
 def logout():
-    app.storage.user['TOKEN'] = ''
+    app.storage.user['TOKEN'] = None
+    app.storage.user['NAME'] = None
+    app.storage.user['ACCOUNT'] = None
+    app.storage.user['PHONE'] = None
+    app.storage.user['ROLE'] = None
     ui.notify('已退出', close_button='确定')
     ui.navigate.to('/')
 
