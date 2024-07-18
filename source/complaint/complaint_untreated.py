@@ -22,7 +22,7 @@ def complaintui():
                         {'name': 'name', 'label': '建议人', 'field': 'name','align': 'left'},
                         {'name': 'content', 'label': '诉求内容', 'field': 'content','align': 'left'},
                         {'name': 'site', 'label': '诉求地点', 'field': 'site','align': 'left'},
-                        {'name': 'time', 'label': '提交时间', 'field': 'time','align': 'left'},
+                        {'name': 'time', 'label': '提交时间', 'field': 'time','align': 'left','sortable': True},
                         {'name': 'link', 'label': '回复', 'field': 'link','align': 'left'}
                     ]
                     rows = [{'id':i['id'],'name':i['comp_name'],'content':i['comp_text'],'site':i['comp_site'],'time':i['comp_sub_time'].split('T')[0],'link':'/complaint/untreated/{}'.format(i['id'])} for i in res['data']]
@@ -32,7 +32,6 @@ def complaintui():
                             <q-badge :color="blue">
                                 <a :href="props.value">点击前往</a>
                             </q-badge>
-
                         </q-td>
                     ''')
             footer()

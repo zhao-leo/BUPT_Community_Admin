@@ -49,4 +49,8 @@ def index():
 @ui.page('/community')
 def index():
     communityui()
-ui.run(host='0.0.0.0',port=2156,language='zh-CN')
+
+@ui.page('/{other}')
+def index(other: str):
+    ui.navigate.to('/')
+ui.run(host='0.0.0.0',port=2156,language='zh-CN',storage_secret='your_complex_secret_here')

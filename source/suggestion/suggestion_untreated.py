@@ -22,7 +22,7 @@ def suggestionui():
                         {'name': 'name', 'label': '建议人', 'field': 'name','align': 'left'},
                         {'name': 'content', 'label': '建议内容', 'field': 'content','align': 'left'},
                         {'name': 'site', 'label': '建议地点', 'field': 'site','align': 'left'},
-                        {'name': 'time', 'label': '提交时间', 'field': 'time','align': 'left'},
+                        {'name': 'time', 'label': '提交时间', 'field': 'time','align': 'left','sortable': True},
                         {'name': 'link', 'label': '回复', 'field': 'link','align': 'left'}
                     ]
                     rows = [{'id':i['id'],'name':i['sugg_name'],'content':i['sugg_text'],'site':i['sugg_site'],'time':i['sugg_sub_time'].split('T')[0],'link':'/suggestion/untreated/{}'.format(i['id'])} for i in res['data']]
