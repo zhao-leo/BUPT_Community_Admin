@@ -44,7 +44,6 @@ def header():
                 dialog1.close()
                 ui.navigate.to('/home')
             else: # 否则提示错误信息
-                print(res)
                 ui.notify(res["message"],position='top',type='warning',close_button='确定')
 
         with ui.row():
