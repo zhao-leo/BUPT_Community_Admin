@@ -17,7 +17,7 @@ class ComplaintPage(PageLayout):
             ui.navigate.to('/complaint/untreated')
 
     def content(self):
-        if self.res['data']:
+        if self.res.get('data'):
             def __handle_reply(doc_id,content,way,name,tele):
                     if not content or not way or not name or not tele:
                         ui.notify('请填写完整信息', type='warning',position='top')
