@@ -2,6 +2,7 @@
 from nicegui import ui,app
 from source.webAPI.login import login
 from API import loginapi
+from source.layout.footer import footer
 
 def __login(username, password):
     res=login(loginapi(),username, password)
@@ -21,3 +22,4 @@ def login_ui():
             username=ui.input(label='用户名',validation={'用户名不能为空': lambda value: len(value) >= 0})
             password=ui.input(label='密码', password=True,password_toggle_button=True, validation={'密码不得少于6位': lambda value: len(value) >= 6})
             ui.button('登录', on_click=lambda: __login(username.value, password.value))
+    footer()

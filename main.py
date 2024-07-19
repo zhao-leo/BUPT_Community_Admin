@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
-from nicegui import ui
+from nicegui import ui,app
 from source.login import login_ui
 from source.pim import pim_ui
-# from source.suggestion.suggestion_untreated import suggestionui
-# from source.suggestion.suggestion_template import suggestion_num
-# from source.complaint.complaint_untreated import complaintui
-# from source.complaint.complaint_template import complaint_num
-# from source.limit import limitui
+
+from source.suggestion.suggestion_untreated import suggestion_ui
+from source.suggestion.suggestion_template import suggestion_num_ui
+
+from source.complaint.complaint_untreated import complaint_ui
+from source.complaint.complaint_template import complaint_num_ui
 # from source.community import communityui
 
 TOKEN = ""
@@ -18,33 +19,29 @@ def index():
 def index():
     pim_ui()
 
-# @ui.page('/suggestion')
-# def index():
-#     ui.navigate.to('/suggestion/untreated')
+@ui.page('/suggestion')
+def index():
+    ui.navigate.to('/suggestion/untreated')
 
-# @ui.page('/suggestion/untreated')
-# def index():
-#     suggestionui()
+@ui.page('/suggestion/untreated')
+def index():
+    suggestion_ui()
 
-# @ui.page('/suggestion/untreated/{id}')
-# def index(id: int):
-#     suggestion_num(id)
+@ui.page('/suggestion/untreated/{id}')
+def index(id: int):
+    suggestion_num_ui(id)
 
-# @ui.page('/complaint')
-# def index():
-#     ui.navigate.to('/complaint/untreated')
+@ui.page('/complaint')
+def index():
+    ui.navigate.to('/complaint/untreated')
 
-# @ui.page('/complaint/untreated')
-# def index():
-#     complaintui()
+@ui.page('/complaint/untreated')
+def index():
+    complaint_ui()
 
-# @ui.page('/complaint/untreated/{id}')
-# def index(id: int):
-#     complaint_num(id)
-
-# @ui.page('/carlimit')
-# def index():
-#     limitui()
+@ui.page('/complaint/untreated/{id}')
+def index(id: int):
+    complaint_num_ui(id)
 
 # @ui.page('/community')
 # def index():
@@ -54,3 +51,8 @@ def index():
 def index(other: str):
     ui.navigate.to('/')
 ui.run(host='0.0.0.0',port=2156,language='zh-CN',storage_secret='your_complex_secret_here')
+# app.native.window_args['resizable'] = True
+# app.native.start_args['debug'] = False
+# app.native.settings['ALLOW_DOWNLOADS'] = True
+
+# ui.run(native=True, window_size=(800, 600), fullscreen=False,storage_secret='your_complex_secret_here')

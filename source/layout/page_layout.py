@@ -20,6 +20,7 @@ class PageLayout():
                 app.storage.user['NAME'] = data['data']['manager_name']
                 app.storage.user['ACCOUNT'] = data['data']['manager_account']
                 app.storage.user['PHONE'] = data['data']['manager_tele']
+                app.storage.user['ID'] = data['data']['id']
                 if data['data']['id'] <= 3:
                     app.storage.user['ROLE'] = '超级管理员'
                 else:
