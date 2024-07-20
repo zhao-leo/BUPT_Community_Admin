@@ -1,0 +1,5 @@
+{
+  "terminal.integrated.env.windows": {
+  "BASE_URL": "http://49.232.6.217:8001"
+  }
+}
