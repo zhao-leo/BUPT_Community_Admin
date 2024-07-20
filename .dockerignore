@@ -1,7 +1,7 @@
 **/__pycache__
 **/*.pyc
 **/.venv
-ToDo
-style.debug
 *.tar
 tree.txt
+.dockerignore
+.nicegui

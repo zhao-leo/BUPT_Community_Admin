@@ -2,7 +2,6 @@
 from nicegui import ui,app
 from source.webAPI.login import login
 from API import loginapi
-from source.layout.footer import footer
 
 def __login(username, password):
     res=login(loginapi(),username, password)
@@ -13,8 +12,6 @@ def __login(username, password):
     else:
         ui.notify(res["message"],position='top',type='warning')
 
-
-    #.style('''background-image: url("https://img.pptjia.com/image/20190311/23d36b57157ce994302d001124a0b562.jpg");''')
 def login_ui():
     ui.page_title('登录')
     ui.query('body').style('''background-image: url("https://img.pptjia.com/image/20190311/23d36b57157ce994302d001124a0b562.jpg"); background-size: cover;''')

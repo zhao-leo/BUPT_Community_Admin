@@ -47,7 +47,7 @@ class ComplaintPage(PageLayout):
                         with ui.row().style('flex-wrap:wrap'):
                             for i in self.res['data'][0]["complaintmedia_set"]:
                                 with ui.column().style('width:400px;height:auto;'):
-                                    ui.image('data:image/png;base64,'+i['comp_media_base64']).style('object-fit:contain;') # .style('height:200px;width:auto;')
+                                    ui.image(i['comp_media_base64']).style('object-fit:contain;') # .style('height:200px;width:auto;')
                     with ui.row():
                         name=ui.input(label='回复人',validation={'人名不能为空': lambda value: len(value) >= 0})
                         tele=ui.input(label='联系电话',validation={'请正确填写电话号码': lambda value: len(value) == 11 and value.isdigit()})

@@ -8,7 +8,7 @@ from source.suggestion.suggestion_template import suggestion_num_ui
 
 from source.complaint.complaint_untreated import complaint_ui
 from source.complaint.complaint_template import complaint_num_ui
-# from source.community import communityui
+from source.community import community_ui
 
 TOKEN = ""
 @ui.page('/')
@@ -43,9 +43,9 @@ def index():
 def index(id: int):
     complaint_num_ui(id)
 
-# @ui.page('/community')
-# def index():
-#     communityui()
+@ui.page('/community')
+def index():
+    community_ui()
 
 @ui.page('/{other}')
 def index(other: str):

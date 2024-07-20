@@ -3,6 +3,5 @@
 **/.venv
 *.tar
 tree.txt
-.docker_temp_408678287
 .dockerignore
 .nicegui
