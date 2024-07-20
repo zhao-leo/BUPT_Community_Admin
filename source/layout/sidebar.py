@@ -12,7 +12,7 @@ def sidebar():
             
             with ui.expansion('社区诉求'):
                 ui.item('待处理', on_click=lambda: ui.navigate.to('/complaint/untreated'))
-                ui.item('待回访', on_click=lambda: ui.notify('/complaint/treated'))
+                ui.item('待回访', on_click=lambda: ui.navigate.to('/complaint/treated'))
 
             # if app.storage.user.get('ROLE')=='超级管理员':
             #     ui.item('社区管理',on_click=lambda: ui.navigate.to('/community'))

@@ -20,3 +20,9 @@ def reply_complaint(url,comp_id,pim_id,content,way,name,tel,status=True):
 # 获取单个投诉
 def complaint_single(url,id):
     return Request('GET',f'{url}{id}/',{})
+
+def handle_complaint_treat(url,id):
+    data = {
+        "comp_treat": 2
+    }
+    return Request('PUT',f'{url}{id}/',data)

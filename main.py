@@ -3,15 +3,18 @@ from nicegui import ui,app
 from fastapi import Response
 from source.login import login_ui
 from source.pim import pim_ui
+from API import BASE_URL
 
 from source.suggestion.suggestion_untreated import suggestion_ui
 from source.suggestion.suggestion_template import suggestion_num_ui
 
 from source.complaint.complaint_untreated import complaint_ui
 from source.complaint.complaint_template import complaint_num_ui
+from source.complaint.complaint_treat import complaint_treat_ui
+from source.complaint.complaint_treated_template import complaint_num_treat_ui
 from source.community import community_ui
 
-TOKEN = ""
+print(BASE_URL)
 @ui.page('/')
 def index():
     login_ui()
@@ -40,9 +43,17 @@ def index():
 def index():
     complaint_ui()
 
+@ui.page('/complaint/treated')
+def index():
+    complaint_treat_ui()
+
 @ui.page('/complaint/untreated/{id}')
 def index(id: int):
     complaint_num_ui(id)
+
+@ui.page('/complaint/treated/{id}')
+def index(id: int):
+    complaint_num_treat_ui(id)
 
 @ui.page('/community')
 def index():

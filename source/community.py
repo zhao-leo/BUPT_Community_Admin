@@ -94,14 +94,15 @@ class CommunityPage(PageLayout):
                         ui.label('联系电话').style('width:37%;font-size:1.2rem')
                         ui.label('操作').style('width:24%;font-size:1.2rem')
                     hotlineInf = get_hotline(hotline()).get('data')
-                    for i in hotlineInf:
-                        with ui.row().style('width:100%;height:auto'):
-                            with ui.column().style('width:100%;height:auto'):
-                                with ui.row().style('width:100%;height:auto'):
-                                    ui.label(i.get('hotline_who')).style('width:32%')
-                                    ui.label(i.get('hotline_tele')).style('width:37%')
-                                    ui.button('修改').on_click(lambda i=i:hotlineUpdate(hotlinedetail(),i.get('id'),i.get('hotline_who'),i.get('hotline_tele')))
-                                    ui.button('删除',color='red').on_click(lambda i=i:RemoveHotline(hotlinedetail(),i.get('id')))
+                    if hotlineInf!=None:
+                        for i in hotlineInf:
+                            with ui.row().style('width:100%;height:auto'):
+                                with ui.column().style('width:100%;height:auto'):
+                                    with ui.row().style('width:100%;height:auto'):
+                                        ui.label(i.get('hotline_who')).style('width:32%')
+                                        ui.label(i.get('hotline_tele')).style('width:37%')
+                                        ui.button('修改').on_click(lambda i=i:hotlineUpdate(hotlinedetail(),i.get('id'),i.get('hotline_who'),i.get('hotline_tele')))
+                                        ui.button('删除',color='red').on_click(lambda i=i:RemoveHotline(hotlinedetail(),i.get('id')))
             @ui.refreshable
             def coverUI():
                 
@@ -127,11 +128,12 @@ class CommunityPage(PageLayout):
                     ui.upload(label='上传轮播图',max_files=1,max_file_size=1024 * 1024 * 5,on_rejected=lambda :ui.notify('上传失败'),on_upload=handle_upload,auto_upload=True).props('accept=.png,.jpg,.jpeg').classes('max-w-full').style('width:50%;height:auto;')
 
                     res = get_picture(picture())
-                    with ui.carousel(animated=True, arrows=True, navigation=True).style('width: 60%;height:auto;align-self:center'):
-                        for i in res.get('data'):
-                            with ui.carousel_slide().classes('p-0'):
-                                ui.button(text='删除当前图片',color='red').on_click(lambda i=i:del_cover(i['id'])).style('justify-content:flex-end;')
-                                ui.image(BASE_URL[:-1]+i['cover_file'])
+                    if res.get('data')!=None:
+                        with ui.carousel(animated=True, arrows=True, navigation=True).style('width: 60%;height:auto;align-self:center'):
+                            for i in res.get('data'):
+                                with ui.carousel_slide().classes('p-0'):
+                                    ui.button(text='删除当前图片',color='red').on_click(lambda i=i:del_cover(i['id'])).style('justify-content:flex-end;')
+                                    ui.image(BASE_URL[:-1]+i['cover_file'])
 
             @ui.refreshable
             def backgroundUI():
@@ -143,13 +145,13 @@ class CommunityPage(PageLayout):
                         backgroundUI.refresh()
                     else:
                         ui.notify(res.get('message'),type='warning',position='top')
-                        print(res)
 
                 with ui.card().style('width:100%'):
                     ui.label('背景图').style('font-size:1.5rem')
                     r = get_picture(background()).get('data')
                     ui.upload(label='上传背景图',max_files=1,max_file_size=1024 * 1024 * 5,on_rejected=lambda :ui.notify('上传失败'),on_upload=handle_upload,auto_upload=True).props('accept=.png,.jpg,.jpeg,.ico').classes('max-w-full').style('width:50%;height:auto;')
-                    ui.image(BASE_URL[:-1]+r[0].get('back_file')).style('width:100%;height:auto;')
+                    if r!=None:
+                        ui.image(BASE_URL[:-1]+r[0].get('back_file')).style('width:100%;height:auto;')
             WarnUI()
             hotlineUI()
             coverUI()

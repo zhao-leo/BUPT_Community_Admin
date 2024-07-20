@@ -35,3 +35,7 @@ def excel():
   return BASE_URL+'user/GetExcelNew/'
 def background():
   return BASE_URL+'user/Background/'
+def complainttreat():
+  return BASE_URL+'user/ComplaintTreat/'
+def complainthandle():
+  return BASE_URL+'user/ComplaintTreatWhich/'
