@@ -4,8 +4,6 @@ from fastapi import Response
 from source.login import login_ui
 from source.pim import pim_ui
 
-from API import BASE_URL
-
 from source.suggestion.suggestion_untreated import suggestion_ui
 from source.suggestion.suggestion_template import suggestion_num_ui
 
