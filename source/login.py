@@ -15,7 +15,10 @@ def loginui(username, password):
 
 def login_ui():
     ui.page_title('登录')
-    r = get_picture(background()).get('data')[0].get('back_file')
+    try:
+        r = get_picture(background()).get('data')[0].get('back_file')
+    except:
+        r = ''
     ui.query('body').style(f'''background-image: url("{BASE_URL[:-1]+r}"); background-size: cover;''')
     with ui.card(align_items='center').classes('mx-auto').style("max-width: 500px; margin-top: 10%;").style('background-color: rgb(255 255 255 / 40%);'):
         ui.label('欢迎使用社区反馈管理系统').style("width:auto;height:auto;align-self:center").style("font-size:2.0rem")
