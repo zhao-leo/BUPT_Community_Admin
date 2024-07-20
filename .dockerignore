@@ -5,3 +5,5 @@
 tree.txt
 .dockerignore
 .nicegui
+.github
+.venv

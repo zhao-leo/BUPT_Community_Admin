@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from nicegui import ui
+from nicegui import ui,app
 
 def sidebar():
     with ui.left_drawer(bordered=True,fixed=False).props('width=170 bordered'):
@@ -14,4 +14,6 @@ def sidebar():
                 ui.item('待处理', on_click=lambda: ui.navigate.to('/complaint/untreated'))
                 ui.item('待回访', on_click=lambda: ui.notify('/complaint/treated'))
 
+            # if app.storage.user.get('ROLE')=='超级管理员':
+            #     ui.item('社区管理',on_click=lambda: ui.navigate.to('/community'))
             ui.item('社区管理',on_click=lambda: ui.navigate.to('/community'))

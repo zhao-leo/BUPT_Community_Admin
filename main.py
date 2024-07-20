@@ -54,4 +54,4 @@ async def get_image():
         image_data = image_file.read()
     return Response(content=image_data, media_type="image/ico")
 
-ui.run(host='0.0.0.0',port=9000,language='zh-CN',storage_secret='e48d1469c529a31f67b8293e82cb604929759dab9cb8f83199b23bff89f739d1',favicon='./icon/favicon.ico')
+ui.run(port=9000,language='zh-CN',storage_secret='e48d1469c529a31f67b8293e82cb604929759dab9cb8f83199b23bff89f739d1',favicon='./icon/favicon.ico')
