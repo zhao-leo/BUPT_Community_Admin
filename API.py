@@ -3,7 +3,7 @@ import os
 
 BASE_URL=os.getenv('BASE_URL')+'/'
 # BASE_URL='http://10.21.235.116:8001/'
-# BASE_URL='http://49.232.6.217:8001/'
+
 
 def loginapi():
   return BASE_URL+'user/ManagerLogin/'

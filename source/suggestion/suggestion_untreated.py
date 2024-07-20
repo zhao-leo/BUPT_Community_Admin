@@ -14,8 +14,6 @@ class SuggestionPage(PageLayout):
         else:
             ui.notify(self.res.get('message'), type='warning',position='top')
 
-            ui.navigate.to('/home')
-
     def content(self):
         if self.res.get('data'):
             with ui.column().style('width:100%'):

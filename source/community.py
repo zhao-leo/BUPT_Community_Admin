@@ -122,12 +122,12 @@ class CommunityPage(PageLayout):
                     else:
                         ui.notify(res.get('message'),type='warning',position='top')
 
-            
                 with ui.card().style('width:100%'):
                     ui.label('轮播图').style('font-size:1.5rem')
-                    ui.upload(label='上传轮播图',max_files=1,max_file_size=1024 * 1024 * 5,on_rejected=lambda :ui.notify('上传失败'),on_upload=handle_upload,auto_upload=True).props('accept=.png,.jpg,.jpeg,.ico').classes('max-w-full').style('width:50%;height:auto;')
+                    ui.upload(label='上传轮播图',max_files=1,max_file_size=1024 * 1024 * 5,on_rejected=lambda :ui.notify('上传失败'),on_upload=handle_upload,auto_upload=True).props('accept=.png,.jpg,.jpeg').classes('max-w-full').style('width:50%;height:auto;')
+
                     res = get_picture(picture())
-                    with ui.carousel(animated=True, arrows=True, navigation=True).style('width: 100%;height:auto;'):
+                    with ui.carousel(animated=True, arrows=True, navigation=True).style('width: 60%;height:auto;align-self:center'):
                         for i in res.get('data'):
                             with ui.carousel_slide().classes('p-0'):
                                 ui.button(text='删除当前图片',color='red').on_click(lambda i=i:del_cover(i['id'])).style('justify-content:flex-end;')
