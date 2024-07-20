@@ -1,4 +1,4 @@
-FROM docker.anyhub.us.kg/library/python:3.11-slim
+FROM python:3.11-slim
 
 ENV BASE_URL=http://49.232.6.217:8001
 
