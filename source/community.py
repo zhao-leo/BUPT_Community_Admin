@@ -2,7 +2,7 @@
 from nicegui import ui,events
 from source.webAPI.community import get_hotline,update_hotline,add_hotline,remove_hotline,\
 get_warmtext,update_warmtext,get_picture,upload_pic,delete_pic
-from API import hotline,hotlinedetail,warmnotice,picture,picDetail
+from API import hotline,hotlinedetail,warmnotice,picture,picDetail,BASE_URL
 
 from source.layout.page_layout import PageLayout
 
@@ -102,18 +102,41 @@ class CommunityPage(PageLayout):
                                     ui.label(i.get('hotline_tele')).style('width:37%')
                                     ui.button('修改').on_click(lambda i=i:hotlineUpdate(hotlinedetail(),i.get('id'),i.get('hotline_who'),i.get('hotline_tele')))
                                     ui.button('删除',color='red').on_click(lambda i=i:RemoveHotline(hotlinedetail(),i.get('id')))
+            @ui.refreshable
+            def coverUI():
+                
+                def handle_upload(e:events.UploadEventArguments):
+                    file = e.content.read()
+                    res = upload_pic(picture(),file)
+                    if res.get('code') == 200:
+                        ui.notify(res.get('message'),type='info',position='top')
+                        coverUI.refresh()
+                    else:
+                        ui.notify(res.get('message'),type='warning',position='top')
+                        print(res)
+                
+                def del_cover(id):
+                    res = delete_pic(picDetail(),id)
+                    if res.get('code') == 200:
+                        ui.notify(res.get('message'),type='info',position='top')
+                        coverUI.refresh()
+                    else:
+                        ui.notify(res.get('message'),type='warning',position='top')
+
+            
+                with ui.card().style('width:100%'):
+                    ui.label('轮播图').style('font-size:1.5rem')
+                    ui.upload(label='上传轮播图',max_files=1,max_file_size=1024 * 1024 * 5,on_rejected=lambda :ui.notify('上传失败'),on_upload=handle_upload,auto_upload=True).props('accept=.png,.jpg,.jpeg,.ico').classes('max-w-full').style('width:50%;height:auto;')
+                    res = get_picture(picture())
+                    with ui.carousel(animated=True, arrows=True, navigation=True).style('width: 100%;height:auto;'):
+                        for i in res.get('data'):
+                            with ui.carousel_slide().classes('p-0'):
+                                ui.button(text='删除当前图片',color='red').on_click(lambda i=i:del_cover(i['id'])).style('justify-content:flex-end;')
+                                ui.image(BASE_URL[:-1]+i['cover_file'])
+            
             WarnUI()
             hotlineUI()
+            coverUI()
 
 def community_ui():
     CommunityPage().show_layout()
-# def communityui():
-#            with ui.card().style("flex:1").style('width:100%'):
-#            ui.label('轮播图').style('font-size:1.5rem')
-#                ui.upload(label='上传轮播图',max_files=1,max_file_size=1024 * 1024 * 5,on_rejected=lambda :ui.notify('上传失败'),on_upload=handle_upload,auto_upload=True).props('accept=.png,.jpg,.jpeg').classes('max-w-full').style('width:50%;height:auto;')
-#                   res = get_picture(picture())
-#                  with ui.carousel(animated=True, arrows=True, navigation=True).style('width: 100%;height:auto;'):
-#                       for i in res:
-#                          with ui.carousel_slide().classes('p-0'):
-#                               ui.button(text='删除当前图片',color='red').on_click(lambda i=i:del_pic(i['id'])).style('justify-content:flex-end;')
-#                               ui.image(i['cover_file'])

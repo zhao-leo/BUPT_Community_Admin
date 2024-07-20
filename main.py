@@ -3,6 +3,8 @@ from nicegui import ui,app
 from source.login import login_ui
 from source.pim import pim_ui
 
+from API import BASE_URL
+
 from source.suggestion.suggestion_untreated import suggestion_ui
 from source.suggestion.suggestion_template import suggestion_num_ui
 
@@ -50,7 +52,7 @@ def index():
 @ui.page('/{other}')
 def index(other: str):
     ui.navigate.to('/')
-ui.run(host='0.0.0.0',port=2156,language='zh-CN',storage_secret='your_complex_secret_here')
+ui.run(host='0.0.0.0',port=2156,language='zh-CN',storage_secret='your_complex_secret_here',favicon=BASE_URL[:-1]+'docker_media/picture/cover_file_i4eTFlM')
 # app.native.window_args['resizable'] = True
 # app.native.start_args['debug'] = False
 # app.native.settings['ALLOW_DOWNLOADS'] = True
