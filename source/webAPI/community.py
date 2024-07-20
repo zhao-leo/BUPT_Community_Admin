@@ -48,3 +48,8 @@ def upload_pic(url,file):
 # 删除图片
 def delete_pic(url,id):
     return Request('DELETE',url+str(id)+'/',{})
+
+# 上传背景
+def upload_bkground(url,file):
+    files = {"back_file":file}
+    return FileUpload(url,files)

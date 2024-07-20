@@ -35,3 +35,5 @@ def addadmin():
   return BASE_URL+'user/ManagerAdd/'
 def excel():
   return BASE_URL+'user/GetExcelNew/'
+def background():
+  return BASE_URL+'user/Background/'

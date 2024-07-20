@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from nicegui import ui,app
 from source.webAPI.login import login
-from API import loginapi
+from source.webAPI.community import get_picture
+from API import loginapi,background,BASE_URL
 
 def loginui(username, password):
     res=login(loginapi(),username, password)
@@ -14,7 +15,8 @@ def loginui(username, password):
 
 def login_ui():
     ui.page_title('登录')
-    ui.query('body').style('''background-image: url("https://img.pptjia.com/image/20190311/23d36b57157ce994302d001124a0b562.jpg"); background-size: cover;''')
+    r = get_picture(background()).get('data')[0].get('back_file')
+    ui.query('body').style(f'''background-image: url("{BASE_URL[:-1]+r}"); background-size: cover;''')
     with ui.card(align_items='center').classes('mx-auto').style("max-width: 500px; margin-top: 10%;").style('background-color: rgb(255 255 255 / 40%);'):
         ui.label('欢迎使用社区反馈管理系统').style("width:auto;height:auto;align-self:center").style("font-size:2.0rem")
         ui.separator()

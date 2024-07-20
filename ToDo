@@ -1,9 +1,0 @@
-~ *TODO1:* 将token和其他变量存储到app.storage.browser中
-
-~ *TODO2:* 修改webAPI的函数,保证json解析不出现报错
-
-~ *TODO3:* 将layout封装成一个类，修改页面，简化页面布局
-
-*TODO4:* 修改封面背景图
-
-~ *TODO5:* 统一json返回标准

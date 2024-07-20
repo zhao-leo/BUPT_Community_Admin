@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from nicegui import ui,app
+from fastapi import Response
 from source.login import login_ui
 from source.pim import pim_ui
 
@@ -49,12 +50,13 @@ def index(id: int):
 def index():
     community_ui()
 
+@app.get("/favicon.ico")
+async def get_image():
+    with open("icon/favicon.ico", "rb") as image_file:
+        image_data = image_file.read()
+    return Response(content=image_data, media_type="image/ico")
+
 @ui.page('/{other}')
 def index(other: str):
     ui.navigate.to('/')
-ui.run(host='0.0.0.0',port=2156,language='zh-CN',storage_secret='your_complex_secret_here',favicon=BASE_URL[:-1]+'docker_media/picture/cover_file_i4eTFlM')
-# app.native.window_args['resizable'] = True
-# app.native.start_args['debug'] = False
-# app.native.settings['ALLOW_DOWNLOADS'] = True
-
-# ui.run(native=True, window_size=(800, 600), fullscreen=False,storage_secret='your_complex_secret_here')
+ui.run(host='0.0.0.0',port=2156,language='zh-CN',storage_secret='e48d1469c529a31f67b8293e82cb604929759dab9cb8f83199b23bff89f739d1',favicon='./icon/favicon.ico')

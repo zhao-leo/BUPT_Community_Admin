@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from nicegui import ui,events
 from source.webAPI.community import get_hotline,update_hotline,add_hotline,remove_hotline,\
-get_warmtext,update_warmtext,get_picture,upload_pic,delete_pic
-from API import hotline,hotlinedetail,warmnotice,picture,picDetail,BASE_URL
+get_warmtext,update_warmtext,get_picture,upload_pic,delete_pic,upload_bkground
+from API import hotline,hotlinedetail,warmnotice,picture,picDetail,background,BASE_URL
 
 from source.layout.page_layout import PageLayout
 
@@ -113,7 +113,6 @@ class CommunityPage(PageLayout):
                         coverUI.refresh()
                     else:
                         ui.notify(res.get('message'),type='warning',position='top')
-                        print(res)
                 
                 def del_cover(id):
                     res = delete_pic(picDetail(),id)
@@ -133,10 +132,28 @@ class CommunityPage(PageLayout):
                             with ui.carousel_slide().classes('p-0'):
                                 ui.button(text='删除当前图片',color='red').on_click(lambda i=i:del_cover(i['id'])).style('justify-content:flex-end;')
                                 ui.image(BASE_URL[:-1]+i['cover_file'])
-            
+
+            @ui.refreshable
+            def backgroundUI():
+                def handle_upload(e:events.UploadEventArguments):
+                    file = e.content.read()
+                    res = upload_bkground(background(),file)
+                    if res.get('code') == 200:
+                        ui.notify(res.get('message'),type='info',position='top')
+                        backgroundUI.refresh()
+                    else:
+                        ui.notify(res.get('message'),type='warning',position='top')
+                        print(res)
+
+                with ui.card().style('width:100%'):
+                    ui.label('背景图').style('font-size:1.5rem')
+                    r = get_picture(background()).get('data')
+                    ui.upload(label='上传背景图',max_files=1,max_file_size=1024 * 1024 * 5,on_rejected=lambda :ui.notify('上传失败'),on_upload=handle_upload,auto_upload=True).props('accept=.png,.jpg,.jpeg,.ico').classes('max-w-full').style('width:50%;height:auto;')
+                    ui.image(BASE_URL[:-1]+r[0].get('back_file')).style('width:100%;height:auto;')
             WarnUI()
             hotlineUI()
             coverUI()
+            backgroundUI()
 
 def community_ui():
     CommunityPage().show_layout()
