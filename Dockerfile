@@ -1,6 +1,6 @@
 FROM docker.anyhub.us.kg/library/python:3.11-slim
 
-ENV BASE_URL=http://10.21.235.116:8001
+ENV BASE_URL=http://49.232.6.217:8001
 
 ENV PYTHONDONTWRITEBYTECODE=1
 
