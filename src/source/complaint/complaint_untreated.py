@@ -25,7 +25,7 @@ class ComplaintPage(PageLayout):
                     {'name': 'time', 'label': '提交时间', 'field': 'time','align': 'left'},
                     {'name': 'link', 'label': '回复', 'field': 'link','align': 'left'}
                 ]
-                rows = [{'id':i.get('id'),'name':i.get('comp_name'),'content':i.get('comp_text'),'site':i.get('comp_site'),'time':i.get('comp_sub_time').split('T')[0],'link':'/complaint/untreated/{}'.format(i.get('id'))} for i in self.res.get('data')]
+                rows = [{'id':i.get('id'),'name':i.get('comp_name'),'content':i.get('comp_title'),'site':i.get('comp_site'),'time':i.get('comp_sub_time').split('T')[0],'link':'/complaint/untreated/{}'.format(i.get('id'))} for i in self.res.get('data')]
                 table=ui.table(columns=columns, rows=rows, row_key='id',pagination={'rowsPerPage': 12, 'sortBy': 'id'}).style("width:100%")
                 table.add_slot('body-cell-link', '''
                     <q-td :props="props">

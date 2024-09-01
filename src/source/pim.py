@@ -30,14 +30,14 @@ class PimPage(PageLayout):
                     ui.label('身份: {}'.format(app.storage.user.get('ROLE'))).style('font-size:1.1rem')
                     ui.label('电话: {}'.format(app.storage.user.get('PHONE'))).style('font-size:1.1rem')
                     ui.label('账号: {}'.format(app.storage.user.get('ACCOUNT'))).style('font-size:1.1rem')
-                
-                
-                with ui.card().style('height:290px;width:330px'):
-                    ui.label('诉求处理情况').style('font-size:1.5rem')
-                    ui.echart.from_pyecharts(Pie().add("",list(zip(self.label,self.complaint))))
+
                 with ui.card().style('height:290px;width:330px'):
                     ui.label('建议处理情况').style('font-size:1.5rem')
                     ui.echart.from_pyecharts(Pie().add("",list(zip(self.label,self.suggestion))))
+                with ui.card().style('height:290px;width:330px'):
+                    ui.label('诉求处理情况').style('font-size:1.5rem')
+                    ui.echart.from_pyecharts(Pie().add("",list(zip(self.label,self.complaint))))
+
 
                 with ui.card().style('height:290px'):
                     ui.label('获取Excel表格').style('font-size:1.5rem')

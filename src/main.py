@@ -13,6 +13,7 @@ from source.complaint.complaint_untreated import complaint_ui
 from source.complaint.complaint_template import complaint_num_ui
 from source.complaint.complaint_treat import complaint_treat_ui
 from source.complaint.complaint_treated_template import complaint_num_treat_ui
+
 from source.community import community_ui
 
 print(BASE_URL)
