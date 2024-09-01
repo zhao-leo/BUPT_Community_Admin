@@ -55,3 +55,6 @@ def background():
 
 def handlenumber():
   return BASE_URL+'user/CountSum/'
+
+def Icon():
+  return BASE_URL+'docker_media/picture/favicon.ico'

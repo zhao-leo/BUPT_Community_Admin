@@ -1,9 +1,0 @@
-**/__pycache__
-**/*.pyc
-**/.venv
-*.tar
-tree.txt
-.dockerignore
-.nicegui
-.github
-.venv

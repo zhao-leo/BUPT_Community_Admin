@@ -2,7 +2,7 @@
 from nicegui import ui
 from source.login import login_ui
 from source.pim import pim_ui
-from API import BASE_URL
+from API import BASE_URL,Icon
 
 from source.suggestion.suggestion_untreated import suggestion_ui
 from source.suggestion.suggestion_template import suggestion_num_ui
@@ -69,4 +69,4 @@ def index(id: int):
 def index():
     community_ui()
 
-ui.run(port=9000,language='zh-CN',show_welcome_message=False,storage_secret='e48d1469c529a31f67b8293e82cb604929759dab9cb8f83199b23bff89f739d1',favicon=r'src\icon\favicon.ico')
+ui.run(port=9000,language='zh-CN',show_welcome_message=False,storage_secret='e48d1469c529a31f67b8293e82cb604929759dab9cb8f83199b23bff89f739d1',favicon=Icon())
