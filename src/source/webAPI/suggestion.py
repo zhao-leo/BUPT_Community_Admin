@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from source.webAPI.request import Request
+from .request import Request
 
 # 获取投诉列表
 def get_suggestion(url):
@@ -20,3 +20,9 @@ def reply_suggestion(url,sugg_id,pim_id,content,way,name,tel,status=True):
 # 获取单个投诉
 def suggestion_single(url,id):
     return Request('GET',f'{url}{id}/',{})
+
+def handle_suggestion_treat(url,id):
+    data = {
+        "sugg_treat": 2
+    }
+    return Request('PUT',f'{url}{id}/',data)

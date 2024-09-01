@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from source.webAPI.request import Request,FileUpload
+from .request import Request,FileUpload
 
 # 获取热线电话
 def get_hotline(url):

@@ -8,7 +8,7 @@ def sidebar():
 
             with ui.expansion('社区建议'):
                 ui.item('待处理', on_click=lambda: ui.navigate.to('/suggestion/untreated'))
-                ui.item('待回访', on_click=lambda: ui.notify('/suggestion/treated'))
+                ui.item('待回访', on_click=lambda: ui.navigate.to('/suggestion/treated'))
             
             with ui.expansion('社区诉求'):
                 ui.item('待处理', on_click=lambda: ui.navigate.to('/complaint/untreated'))

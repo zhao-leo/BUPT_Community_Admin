@@ -30,7 +30,8 @@ class PageLayout():
                 ui.navigate.to('/')
     
     def content(self): # 内容区域
-        ui.label('Write your CONTENT here')
+        #ui.label('Write your CONTENT here')
+        pass
     
     def show_layout(self):
             ui.page_title(self.title.format(app.storage.user.get('NAME'))) # 页面标题

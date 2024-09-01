@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from source.webAPI.request import Request
+from .request import Request
 
 # 获取投诉列表
 def get_complaint(url):

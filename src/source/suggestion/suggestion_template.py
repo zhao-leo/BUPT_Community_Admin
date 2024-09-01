@@ -7,7 +7,7 @@ from source.layout.page_layout import PageLayout
 
 class SuggestionPage(PageLayout):
     def __init__(self,id):
-        super().__init__(f'建议列表-{id}-'+'{}')
+        super().__init__(f'待处理建议-{id}-'+'{}')
         self.id = id
         self.res=suggestion_single(replysuggestion(),id)
         if self.res.get('code') == 200 and self.res.get('data'):
@@ -38,16 +38,23 @@ class SuggestionPage(PageLayout):
                 {'name': '联系电话：', 'inf': self.res['data'][0]['sugg_user_tele']},
                 {'name': '提交时间：', 'inf': self.res['data'][0]["sugg_sub_time"].split('T')[0]},
                 {'name': '建议内容：', 'inf': self.res['data'][0]['sugg_text']},
+                {'name': '处理状态：', 'inf': '需要回访' if self.res['data'][0]['sugg_treat'] else '不需要回访','slot': 'row_5'},
             ]
             with ui.card().style('width:100%'):
                 with ui.column().style("width:100%;flex-direction:column;align-self:flex-start;height:100%"):
-                    ui.table(columns=columns, rows=rows, row_key='name').style('width:100%')
+                    table=ui.table(columns=columns, rows=rows, row_key='name').style('width:100%').style('font-size: 1.0rem;')
+                    table.add_slot('body-cell-inf', '''
+                    <q-td key="row_5" :props="props">
+                        <q-badge :color="props.value == '需要回访' ? 'red' : (props.value == '不需要回访' ? 'green' : 'transparent')" style="font-size: 0.9rem; color: black;">
+                            {{ props.value }}
+                        </q-badge>
+                    </q-td>''')
                     if self.res['data'][0]["suggestionmedia_set"]:
                         ui.label('附件图片：')
                         with ui.row().style('flex-wrap:wrap'):
                             for i in self.res['data'][0]["suggestionmedia_set"]:
                                 with ui.column().style('width:400px;height:auto;'):
-                                    ui.image(BASE_URL[:-1]+i['comp_media']).style('object-fit:contain;') # .style('height:200px;width:auto;')
+                                    ui.image(BASE_URL[:-1]+i['sugg_media']).style('object-fit:contain;') # .style('height:200px;width:auto;')
                     with ui.row():
                         name=ui.input(label='回复人',validation={'人名不能为空': lambda value: len(value) >= 0})
                         tele=ui.input(label='联系电话',validation={'请正确填写电话号码': lambda value: len(value) == 11 and value.isdigit()})

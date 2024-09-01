@@ -20,8 +20,8 @@ class SuggestionPage(PageLayout):
                 columns = [
                     {'name': 'id', 'label': 'ID', 'field': 'id','align': 'left','sortable': True,':sort': '(a,b,rowA,rowB) => b - a'},
                     {'name': 'name', 'label': '建议人', 'field': 'name','align': 'left'},
-                    {'name': 'content', 'label': '建议内容', 'field': 'content','align': 'left'},
-                    {'name': 'site', 'label': '建议地点', 'field': 'site','align': 'left'},
+                    {'name': 'content', 'label': '诉求内容', 'field': 'content','align': 'left'},
+                    {'name': 'site', 'label': '提交地点', 'field': 'site','align': 'left'},
                     {'name': 'time', 'label': '提交时间', 'field': 'time','align': 'left'},
                     {'name': 'link', 'label': '回复', 'field': 'link','align': 'left'}
                 ]

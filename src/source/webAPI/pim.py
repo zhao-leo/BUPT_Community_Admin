@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from source.webAPI.request import Request
+from .request import Request
 
 # 获取管理员信息
 def get_pim(url):
