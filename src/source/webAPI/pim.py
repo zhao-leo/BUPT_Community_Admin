@@ -13,3 +13,6 @@ def update_pim(url,account,name,phone):
 # 获取网站访问量
 def Frequency(url):
     return Request('GET',url,{})
+
+def get_deal(url):
+    return Request('GET',url,{})

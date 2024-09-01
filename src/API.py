@@ -53,3 +53,5 @@ def excel():
 def background():
   return BASE_URL+'user/Background/'
 
+def handlenumber():
+  return BASE_URL+'user/CountSum/'
