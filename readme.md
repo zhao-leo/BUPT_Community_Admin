@@ -48,3 +48,10 @@ COMMUNITYADMIN\SRC
 ```
 
 其中main.py是主程序入口，API.py包含所有接口
+
+Recommend:
+```python
+# style debug tools
+from niceguiToolkit.layout import inject_layout_tool
+inject_layout_tool()
+```
