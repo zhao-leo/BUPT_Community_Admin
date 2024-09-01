@@ -3,6 +3,7 @@ from nicegui import ui,app
 from source.webAPI.login import login
 from source.webAPI.community import get_picture
 from API import loginapi,background,BASE_URL
+from os import getenv
 
 def loginui(username, password):
     res=login(loginapi(),username, password)
@@ -29,4 +30,4 @@ def login_ui():
             ui.button('登录', on_click=lambda: loginui(username.value, password.value))
     with ui.footer().style('height: 50px;').style('background-color: rgb(0 0 0 / 0%);'):
         with ui.row().classes('w-full justify-center items-center'):
-            ui.link('京ICP-000000000000000', 'https://help.aliyun.com/zh/icp-filing/support/website-to-add-the-record-number-faq').style('font-size:1rem; margin-right: 2rem; font-color: black;')
+            ui.link('京ICP-'+getenv('ICP_CODE'), getenv('ICP_URL')).style('font-size:1rem; margin-right: 2rem; font-color: black;')

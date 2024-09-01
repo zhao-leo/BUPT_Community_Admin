@@ -1,6 +1,8 @@
 {
   "terminal.integrated.env.windows": {
   //"BASE_URL": "http://49.232.6.217:8001"
-  "BASE_URL": "http://10.21.235.116:8000"
+  "BASE_URL": "http://10.21.235.116:8000",
+  "ICP_CODE": "0000000123123",
+  "ICP_URL": "https://zhaocloud.work",
   }
 }
