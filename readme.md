@@ -55,3 +55,8 @@ Recommend:
 from niceguiToolkit.layout import inject_layout_tool
 inject_layout_tool()
 ```
+
+修改404界面
+```
+~/.venv/Lib/site-packages/nicegui/error.py
+```
