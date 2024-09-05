@@ -1,1 +1,1 @@
-docker build -t zryake/pythonadmin:2.3.0 -f Dockerfile src/
+docker build -t zryake/pythonadmin:2.4.0 -f Dockerfile src/

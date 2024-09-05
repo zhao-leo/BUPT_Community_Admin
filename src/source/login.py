@@ -20,11 +20,12 @@ def login_ui():
         r = get_picture(background()).get('data')[0].get('back_file')
     except:
         r = ''
-    ui.query('body').style(f'''background-image: url("{BASE_URL[:-1]+r}"); background-size: cover;''')
+    ui.query('body').style(f'''background-image: url("{BASE_URL[:-1]+r}"); background-size: cover;''').classes('no-shadow')
     with ui.card(align_items='center').classes('mx-auto').style("max-width: 500px; margin-top: 10%;").style('background-color: rgb(255 255 255 / 40%);'):
-        ui.label('欢迎使用社区反馈管理系统').style("width:auto;height:auto;align-self:center").style("font-size:2.0rem")
+        with ui.card().style('background-color: rgb(255 255 255 / 0%);width:100%;').classes('no-shadow'):
+            ui.label('欢迎使用社区反馈管理系统').style("width:auto;height:auto;align-self:center").style("font-size:2.0rem")
         ui.separator()
-        with ui.card().style('background-color: rgb(255 255 255 / 0%);'):
+        with ui.card().style('background-color: rgb(255 255 255 / 0%);width:100%;').classes('no-shadow'):
             username = ui.input(label='用户名', validation={'用户名不能为空': lambda value: len(value) >= 0}).style('font-size:1rem;width:100%;')
             password = ui.input(label='密码', password=True, password_toggle_button=True, validation={'密码不得少于6位': lambda value: len(value) >= 6}).style('font-size:1rem;width:100%;')
             ui.button('登录', on_click=lambda: loginui(username.value, password.value))
