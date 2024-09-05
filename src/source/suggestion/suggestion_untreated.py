@@ -10,7 +10,8 @@ class SuggestionPage(PageLayout):
         super().__init__('建议列表-{}')
         self.res=get_suggestion(suggestionAll())
         if self.res.get('code') == 200 and self.res.get('data'):
-            ui.notify(self.res.get('message'), type='info',position='top')
+            # ui.notify(self.res.get('message'), type='info',position='top')
+            pass
         else:
             ui.notify(self.res.get('message'), type='warning',position='top')
 

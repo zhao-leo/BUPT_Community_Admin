@@ -21,8 +21,9 @@ def reply_suggestion(url,sugg_id,pim_id,content,way,name,tel,status=True):
 def suggestion_single(url,id):
     return Request('GET',f'{url}{id}/',{})
 
-def handle_suggestion_treat(url,id):
+def handle_suggestion_treat(url,id,summary):
     data = {
-        "sugg_treat": 2
+        "sugg_treat": 2,
+        "sugg_summary": summary
     }
     return Request('PUT',f'{url}{id}/',data)

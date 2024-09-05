@@ -41,7 +41,7 @@ def header():
             res=update_pim(url,account,name,phone)
             if res['code']==200: # 如果返回的code为200,表示修改成功,关闭弹窗并跳转到首页
                 ui.notify(res["message"],position='top',type='info')
-                dialog1.close()
+                dialog2.close()
                 ui.navigate.to('/home')
             else: # 否则提示错误信息
                 ui.notify(res["message"],position='top',type='warning',close_button='确定')
@@ -68,7 +68,6 @@ def header():
             res=add_admin(url,account,code)
             if res['code']==200: # 如果返回的code为200,表示修改成功,关闭弹窗并跳转到首页
                 ui.notify(res["message"],position='top',type='info')
-                dialog1.close()
                 ui.navigate.to('/home')
             else: # 否则提示错误信息
                 ui.notify(res["message"],position='top',type='warning',close_button='确定')

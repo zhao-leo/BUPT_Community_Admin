@@ -18,8 +18,10 @@ class ComplaintPage(PageLayout):
 
     def content(self):
         if self.res.get('data'):
-            def __handle_reply(doc_id):
-                res=handle_complaint_treat(complainthandle(),doc_id)
+            def __handle_reply(doc_id,summary):
+                if summary == '':
+                    summary = '无'
+                res=handle_complaint_treat(complainthandle(),doc_id,summary)
                 if res.get('code') == 200:
                     ui.notify(res.get('message'), type='info',position='top')
                     ui.navigate.to('/complaint/treated')
@@ -40,7 +42,7 @@ class ComplaintPage(PageLayout):
             row2 = [
                 {'name': '回复人：', 'inf': self.res['data'][0]['comp_staff_name']},
                 {'name': '回复电话：', 'inf': self.res['data'][0]['comp_staff_tele']},
-                {'name': '回复时间：', 'inf': self.res['data'][0]['comp_handle_time']},
+                {'name': '回复时间：', 'inf': self.res['data'][0]['comp_handle_time'][:10]},
                 {'name': '回复内容：', 'inf': self.res['data'][0]['comp_content']},
             ]
             with ui.card().style('width:100%'):
@@ -59,7 +61,8 @@ class ComplaintPage(PageLayout):
                                 with ui.column().style('width:400px;height:auto;'):
                                     ui.image(BASE_URL[:-1]+i['comp_media']).style('object-fit:contain;') # .style('height:200px;width:auto;')
                     ui.table(columns=columns,rows=row2,row_key='name').style('width:100%').style('font-size: 1.0rem;')
-                    ui.button('提交',on_click=lambda: __handle_reply(self.id)).style('margin-top:10px;')
+                    x=ui.input("回访总结（可选）").style('margin-top:10px;').style('width:100%')
+                    ui.button('提交',on_click=lambda: __handle_reply(self.id,x.value)).style('margin-top:10px;')
 
 def complaint_num_treat_ui(id):
     ComplaintPage(id).show_layout()

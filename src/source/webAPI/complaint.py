@@ -21,8 +21,9 @@ def reply_complaint(url,comp_id,pim_id,content,way,name,tel,status=True):
 def complaint_single(url,id):
     return Request('GET',f'{url}{id}/',{})
 
-def handle_complaint_treat(url,id):
+def handle_complaint_treat(url,id,summary):
     data = {
-        "comp_treat": 2
+        "comp_treat": 2,
+        "comp_summary": summary
     }
     return Request('PUT',f'{url}{id}/',data)

@@ -122,18 +122,52 @@ class CommunityPage(PageLayout):
                         coverUI.refresh()
                     else:
                         ui.notify(res.get('message'),type='warning',position='top')
+                
+                def preview_cover(routing:str):
+                    with ui.dialog() as dialog1,ui.card().style('width:80vh;height:auto;'):
+                        ui.image(BASE_URL[:-1]+routing).style('width:100%;height:auto;')
+                        ui.button('关闭').on_click(lambda:dialog1.close())
+                    dialog1.open()
+
+                def preview(res: list):
+                    with ui.dialog() as dialog,ui.card().style('width:80vh;height:auto;'):
+                        if res!=None:
+                            with ui.carousel(animated=True, arrows=True, navigation=True).style('width: 60%;height:auto;align-self:center'):
+                                for i in res:
+                                    with ui.carousel_slide().classes('p-0'):
+                                        ui.image(BASE_URL[:-1]+i['cover_file'])
+                            ui.button('关闭').on_click(lambda:dialog.close())
+                    dialog.open()
 
                 with ui.card().style('width:100%'):
-                    ui.label('轮播图').style('font-size:1.5rem')
-                    ui.upload(label='上传轮播图',max_files=1,max_file_size=1024 * 1024 * 5,on_rejected=lambda :ui.notify('上传失败'),on_upload=handle_upload,auto_upload=True).props('accept=.png,.jpg,.jpeg').classes('max-w-full').style('width:50%;height:auto;')
-
                     res = get_picture(picture())
-                    if res.get('data')!=None:
-                        with ui.carousel(animated=True, arrows=True, navigation=True).style('width: 60%;height:auto;align-self:center'):
-                            for i in res.get('data'):
-                                with ui.carousel_slide().classes('p-0'):
-                                    ui.button(text='删除当前图片',color='red').on_click(lambda i=i:del_cover(i['id'])).style('justify-content:flex-end;')
-                                    ui.image(BASE_URL[:-1]+i['cover_file'])
+                    resPic = res.get('data')
+                    ui.label('轮播图').style('font-size:1.5rem')
+                    with ui.row().style('width:100%').classes('items-center justify-between'):
+                        ui.upload(label='上传轮播图',max_files=1,max_file_size=1024 * 1024 * 5,on_rejected=lambda :ui.notify('上传失败'),on_upload=handle_upload,auto_upload=True).props('accept=.png,.jpg,.jpeg')#.classes('max-w-full')#.style('width:50%;height:auto;')
+                        
+                        ui.button("预览").on_click(lambda:preview(resPic))#.classes("flex:1")
+
+                    # print(res)
+                    with ui.row().style('width:100%;height:auto'):
+                        ui.label('编号').style('width:32%;font-size:1.2rem')
+                        ui.label('照片名称').style('width:37%;font-size:1.2rem')
+                        ui.label('操作').style('width:24%;font-size:1.2rem')
+                    if resPic!=None:
+                        for i in resPic:
+                            with ui.row().style('width:100%;height:auto'):
+                                with ui.column().style('width:100%;height:auto'):
+                                    with ui.row().style('width:100%;height:auto'):
+                                        ui.label(i.get('id')).style('width:32%')
+                                        ui.label(i.get('cover_file').split('/')[-1]).style('width:37%')
+                                        ui.button('预览当前图片').on_click(lambda i=i:preview_cover(i.get('cover_file')))
+                                        ui.button('删除',color='red').on_click(lambda i=i:del_cover(i['id']))
+                    # if res.get('data')!=None:
+                    #     with ui.carousel(animated=True, arrows=True, navigation=True).style('width: 60%;height:auto;align-self:center'):
+                    #         for i in res.get('data'):
+                    #             with ui.carousel_slide().classes('p-0'):
+                    #                 ui.button(text='删除当前图片',color='red').on_click(lambda i=i:del_cover(i['id'])).style('justify-content:flex-end;')
+                    #                 ui.image(BASE_URL[:-1]+i['cover_file'])
 
             @ui.refreshable
             def backgroundUI():

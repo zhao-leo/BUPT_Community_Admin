@@ -23,10 +23,10 @@ def Request(method: str,url: str, data: dict) -> dict:
     except:
         return {"message":"网络错误","code":0}
 
-def GetExcel(url:str, data: dict) -> bytes:
+def GetExcel(url:str, data: dict) -> requests.Response:
     headers = {'Content-type': 'application/json','Authorization': app.storage.user.get('TOKEN')}
     response = requests.post(url, headers=headers, json=data)
-    return response.content
+    return response
 
 def FileUpload(url:str, data: dict) -> dict:
     headers = {'Authorization': app.storage.user.get('TOKEN')}

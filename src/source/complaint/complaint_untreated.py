@@ -10,7 +10,8 @@ class ComplaintPage(PageLayout):
         super().__init__('诉求列表-{}')
         self.res=get_complaint(complaintAll())
         if self.res.get('code') == 200 and self.res.get('data'):
-            ui.notify(self.res.get('message'), type='info',position='top')
+            # ui.notify(self.res.get('message'), type='info',position='top')
+            pass
         else:
             ui.notify(self.res.get('message'), type='warning',position='top')
 

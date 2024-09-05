@@ -5,6 +5,7 @@ from source.webAPI.pim import get_deal
 from API import excel,handlenumber
 from datetime import datetime
 from pyecharts.charts import Pie
+import json
 
 from source.layout.page_layout import PageLayout
 
@@ -23,23 +24,22 @@ class PimPage(PageLayout):
         with ui.card().style("width:100%;height:100%"):
             ui.label('欢迎您: {}'.format(app.storage.user.get('NAME'))).style('font-size:1.1rem')
             ui.separator()
-            with ui.row():
-                with ui.card().style('height:290px'):
+            with ui.row().style('width:100%'):
+                with ui.card().style('height:350px;width:18%'):
                     ui.label('以下是您的个人信息:').style('font-size:1.1rem')
                     ui.separator()
                     ui.label('身份: {}'.format(app.storage.user.get('ROLE'))).style('font-size:1.1rem')
                     ui.label('电话: {}'.format(app.storage.user.get('PHONE'))).style('font-size:1.1rem')
                     ui.label('账号: {}'.format(app.storage.user.get('ACCOUNT'))).style('font-size:1.1rem')
 
-                with ui.card().style('height:290px;width:330px'):
+                with ui.card().style('height:350px;width:30%'):
                     ui.label('建议处理情况').style('font-size:1.5rem')
                     ui.echart.from_pyecharts(Pie().add("",list(zip(self.label,self.suggestion))))
-                with ui.card().style('height:290px;width:330px'):
+                with ui.card().style('height:350px;width:30%'):
                     ui.label('诉求处理情况').style('font-size:1.5rem')
                     ui.echart.from_pyecharts(Pie().add("",list(zip(self.label,self.complaint))))
 
-
-                with ui.card().style('height:290px'):
+                with ui.card().style('height:350px;width:18%'):
                     ui.label('获取Excel表格').style('font-size:1.5rem')
                     with ui.input('开始日期') as date1:
                         with ui.menu().props('no-parent-event') as menu:
@@ -61,7 +61,13 @@ class PimPage(PageLayout):
                         elif datetime.strptime(date2.value,'%Y-%m-%d')<datetime.strptime(date1.value,'%Y-%m-%d'):
                             ui.notify('结束日期不能小于开始日期',position='top',type='warning')
                         else:
-                            ui.download(get_excel(excel(),date1.value,date2.value),'{}-{}XX社区投诉和建议表.xlsx'.format(date1.value,date2.value))
+                            response = get_excel(excel(),date1.value,date2.value)
+                            if response.status_code == 200:
+                                ui.download(response.content,'{}-{}社区投诉和建议表.xlsx'.format(date1.value,date2.value))
+                            else:
+                                res = json.loads(response.text)
+                                ui.notify(res.get('message'),position='top',type='warning',close_button="关闭")
+
                     ui.button('点击下载', on_click=lambda: download_excel(date1,date2)).style('margin-top:1rem')
 
 def pim_ui():
