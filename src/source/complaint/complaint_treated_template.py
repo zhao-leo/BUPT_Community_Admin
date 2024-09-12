@@ -18,6 +18,15 @@ class ComplaintPage(PageLayout):
 
     def content(self):
         if self.res.get('data'):
+            def preview(res: list):
+                with ui.dialog() as dialog,ui.card().style('width:80vh;height:auto;'):
+                    if res!=None:
+                        with ui.carousel(animated=True, arrows=True, navigation=True).style('width: 60%;height:auto;align-self:center'):
+                            for i in res:
+                                with ui.carousel_slide().classes('p-0'):
+                                    ui.image(BASE_URL[:-1]+i['comp_media'])
+                        ui.button('关闭').on_click(lambda:dialog.close())
+                dialog.open()
             def __handle_reply(doc_id,summary):
                 if summary == '':
                     summary = '无'
@@ -55,11 +64,9 @@ class ComplaintPage(PageLayout):
                         </q-badge>
                     </q-td>''')
                     if self.res['data'][0]["complaintmedia_set"]:
-                        ui.label('附件图片：')
-                        with ui.row().style('flex-wrap:wrap'):
-                            for i in self.res['data'][0]["complaintmedia_set"]:
-                                with ui.column().style('width:400px;height:auto;'):
-                                    ui.image(BASE_URL[:-1]+i['comp_media']).style('object-fit:contain;') # .style('height:200px;width:auto;')
+                        with ui.row():
+                            ui.label('附件图片：').style('font-size:1.4rem;height:30px;')
+                            ui.button("点击查看",on_click=lambda:preview(self.res['data'][0]["complaintmedia_set"])).style('width:100px;')
                     ui.table(columns=columns,rows=row2,row_key='name').style('width:100%').style('font-size: 1.0rem;')
                     x=ui.input("回访总结（可选）").style('margin-top:10px;').style('width:100%')
                     ui.button('提交',on_click=lambda: __handle_reply(self.id,x.value)).style('margin-top:10px;')

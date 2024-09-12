@@ -18,6 +18,15 @@ class SuggestionPage(PageLayout):
 
     def content(self):
         if self.res.get('data'):
+            def preview(res: list):
+                with ui.dialog() as dialog,ui.card().style('width:80vh;height:auto;'):
+                    if res!=None:
+                        with ui.carousel(animated=True, arrows=True, navigation=True).style('width: 60%;height:auto;align-self:center'):
+                            for i in res:
+                                with ui.carousel_slide().classes('p-0'):
+                                    ui.image(BASE_URL[:-1]+i['sugg_media'])
+                        ui.button('关闭').on_click(lambda:dialog.close())
+                dialog.open()
             def __handle_reply(doc_id,content,way,name,tele):
                     if not content or not way or not name or not tele:
                         ui.notify('请填写完整信息', type='warning',position='top')
@@ -51,10 +60,9 @@ class SuggestionPage(PageLayout):
                     </q-td>''')
                     if self.res['data'][0]["suggestionmedia_set"]:
                         ui.label('附件图片：')
-                        with ui.row().style('flex-wrap:wrap'):
-                            for i in self.res['data'][0]["suggestionmedia_set"]:
-                                with ui.column().style('width:400px;height:auto;'):
-                                    ui.image(BASE_URL[:-1]+i['sugg_media']).style('object-fit:contain;') # .style('height:200px;width:auto;')
+                        with ui.row():
+                            ui.label('附件图片：').style('font-size:1.4rem;height:30px;')
+                            ui.button("点击查看",on_click=lambda:preview(self.res['data'][0]["suggestionmedia_set"])).style('width:100px;')
                     with ui.row():
                         name=ui.input(label='回复人',validation={'人名不能为空': lambda value: len(value) >= 0})
                         tele=ui.input(label='联系电话',validation={'请正确填写电话号码': lambda value: len(value) == 11 and value.isdigit()})

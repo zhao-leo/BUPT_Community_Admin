@@ -7,6 +7,8 @@ from API import excel
 
 def sidebar():
     with ui.dialog() as dialog,ui.card():
+        #ui.label("请选择导出数据的日期范围").style('font-size:1.5rem')
+        ui.separator()
         result = ui.date().props("range").props(''':options="date => date <= '{}'"'''.format(datetime.now().strftime(r"%Y/%m/%d")))
         def download_excel(date: dict):
             # date = json.loads(date)

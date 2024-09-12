@@ -11,9 +11,6 @@ COMMUNITYADMIN\SRC
 │  API.py
 │  main.py
 │
-├─icon
-│      favicon.ico
-│
 └─source
     │  community.py
     │  login.py
