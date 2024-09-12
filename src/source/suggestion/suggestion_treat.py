@@ -13,7 +13,8 @@ class SuggestionReplyPage(PageLayout):
             # ui.notify(self.res.get('message'), type='info',position='top')
             pass
         else:
-            ui.notify(self.res.get('message'), type='warning',position='top')
+            # ui.notify(self.res.get('message'), type='warning',position='top')
+            pass
 
     def content(self):
         if self.res.get('data'):
@@ -35,6 +36,8 @@ class SuggestionReplyPage(PageLayout):
                         </q-badge>
                     </q-td>
                 ''')
-
+        else:
+            with ui.column().style('width:100%'):
+                ui.label('暂无未处理表单').style('font-size: 40px;').style('width:100%').style('text-align: center;')
 def suggestion_treat_ui():
     SuggestionReplyPage().show_layout()
