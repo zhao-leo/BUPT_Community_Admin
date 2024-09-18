@@ -12,15 +12,15 @@ class SuggestionPage(PageLayout):
         self.res=suggestion_single(singleSuggestion(),id)
         match self.res['data'][0]['sugg_feedback']:
             case 1:
-                self.feedback=='非常满意'
+                self.feedback='非常满意'
             case 2:
-                self.feedback=='满意'
+                self.feedback='满意'
             case 3:
-                self.feedback=='基本满意'
+                self.feedback='基本满意'
             case 4:
-                self.feedback=='一般'
+                self.feedback='一般'
             case 5:
-                self.feedback=='不满意'
+                self.feedback='不满意'
             case _:
                 self.feedback='未评价'
 
