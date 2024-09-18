@@ -17,7 +17,10 @@ class CommunityPage(PageLayout):
                 with ui.card().style('width:100%'):
                     ui.label('温馨提示').style('font-size:1.5rem')
                     warntext=ui.textarea('社区热线管理，可添加、修改、删除社区热线').style('width:100%;height:100%;font-size:1.2rem')
-                    warntext.value=get_warmtext(warmnotice()).get('data').get('warn_text')
+                    try:
+                        warntext.value=get_warmtext(warmnotice()).get('data').get('warn_text')
+                    except:
+                        ui.navigate.to('/')
                     def update_warn(url,text):
                         res = update_warmtext(url,text)
                         if res.get('code') == 200:

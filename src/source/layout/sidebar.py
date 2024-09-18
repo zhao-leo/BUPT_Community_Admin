@@ -11,10 +11,8 @@ def sidebar():
         ui.separator()
         result = ui.date().props("range").props(''':options="date => date <= '{}'"'''.format(datetime.now().strftime(r"%Y/%m/%d")))
         def download_excel(date: dict):
-            # date = json.loads(date)
             date1 = date.get("from")
             date2 = date.get("to")
-            # print(date)
             if date1=='' or date2=='':
                 ui.notify('日期不能为空',position='top',type='warning')
             elif datetime.strptime(date2,r'%Y-%m-%d')<datetime.strptime(date1,r'%Y-%m-%d'):
@@ -39,10 +37,12 @@ def sidebar():
             with ui.expansion('社区建议'):
                 ui.item('待处理', on_click=lambda: ui.navigate.to('/suggestion/untreated'))
                 ui.item('待回访', on_click=lambda: ui.navigate.to('/suggestion/treated'))
+                ui.item('历史记录', on_click=lambda: ui.navigate.to('/suggestion/finished'))
             
             with ui.expansion('社区诉求'):
                 ui.item('待处理', on_click=lambda: ui.navigate.to('/complaint/untreated'))
                 ui.item('待回访', on_click=lambda: ui.navigate.to('/complaint/treated'))
+                ui.item('历史记录', on_click=lambda: ui.navigate.to('/complaint/finished'))
 
             # if app.storage.user.get('ROLE')=='超级管理员':
             #     ui.item('社区管理',on_click=lambda: ui.navigate.to('/community'))

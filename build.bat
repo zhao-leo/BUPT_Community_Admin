@@ -1,0 +1,1 @@
+docker build -t registry.cn-hangzhou.aliyuncs.com/zhao-leo/pythonadmin:2.6.0 -f Dockerfile src/
