@@ -10,6 +10,7 @@ webAPI中定义了所有的接口函数
 COMMUNITYADMIN\SRC
 │  API.py
 │  main.py
+│  requirements.txt
 │
 └─source
     │  community.py
@@ -17,6 +18,8 @@ COMMUNITYADMIN\SRC
     │  pim.py
     │
     ├─complaint
+    │      complaint_finished.py
+    │      complaint_finished_template.py
     │      complaint_template.py
     │      complaint_treat.py
     │      complaint_treated_template.py
@@ -29,6 +32,8 @@ COMMUNITYADMIN\SRC
     │      sidebar.py
     │
     ├─suggestion
+    │      suggestion_finished.py
+    │      suggestion_finished_template.py
     │      suggestion_template.py
     │      suggestion_treat.py
     │      suggestion_treated_template.py
@@ -47,10 +52,15 @@ COMMUNITYADMIN\SRC
 其中main.py是主程序入口，API.py包含所有接口
 
 Recommend:
+
 ```python
 # style debug tools
 from niceguiToolkit.layout import inject_layout_tool
 inject_layout_tool()
+```
+本项目同时有docker镜像提供:
+```
+docker pull registry.cn-hangzhou.aliyuncs.com/zhao-leo/pythonadmin:latest
 ```
 
 修改404界面
