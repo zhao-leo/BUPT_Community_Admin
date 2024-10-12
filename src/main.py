@@ -1,3 +1,8 @@
+'''
+Author: zhao-leo 18055219130@163.com
+Date: 2024-10-12 17:44:01
+LastEditTime: 2024-10-12 18:06:44
+'''
 # -*- coding: utf-8 -*-
 from nicegui import ui
 from source.login import login_ui
@@ -95,4 +100,4 @@ def index(id: int):
 def index():
     community_ui()
 
-ui.run(port=9000,language='zh-CN',show_welcome_message=False,storage_secret=string,favicon=Icon())
+ui.run(port=9000,language='zh-CN',show_welcome_message=False,storage_secret=string,favicon=Icon(),title="您访问了一个不存在的页面")

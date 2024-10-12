@@ -1,10 +1,8 @@
 FROM python:3.11-slim
 
-ENV BASE_URL=http://49.232.6.217:8001
+ENV BASE_URL=http://www.kuangqiaodongjie.cn:8001
 
-ENV ICP_URL=https://help.aliyun.com/zh/icp-filing/support/website-to-add-the-record-number-faq
-
-ENV ICP_CODE=000000000000000
+ENV ICP_CODE=京ICP备2021000000号
 
 ENV PYTHONDONTWRITEBYTECODE=1
 
