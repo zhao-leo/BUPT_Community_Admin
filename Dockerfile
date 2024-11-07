@@ -1,8 +1,8 @@
 FROM python:3.11-slim
 
-ENV BASE_URL=http://www.kuangqiaodongjie.cn:8001
+ENV BASE_URL=http://api.example.com
 
-ENV ICP_CODE=京ICP备2021000000号
+ENV ICP_CODE=京ICP备XXXXXXXX号
 
 ENV PYTHONDONTWRITEBYTECODE=1
 
