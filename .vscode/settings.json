@@ -1,7 +1,6 @@
 {
   "terminal.integrated.env.windows": {
-  "BASE_URL": "http://www.kuangqiaodongjie.cn:8001",
-  //"BASE_URL": "http://10.21.235.116:8000",
-  "ICP_CODE": "京ICP备2024090192号-1",
+  "BASE_URL": "https://api.example.com",
+  "ICP_CODE": "京ICP备XXXXXXXXXX号",
   }
 }
