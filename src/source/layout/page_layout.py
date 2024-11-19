@@ -46,7 +46,7 @@ class PageLayout():
                             account1.value=ACCOUNT
                             name = ui.input(label='姓名')
                             name.value=NAME
-                        phone = ui.input(label='电话',validation={'请正确填写电话号码': lambda value: value is not None and len(value) == 11 and value.isdigit()})
+                        phone = ui.input(label='电话',validation={'请正确填写电话号码': lambda value: value is not None and value.isdigit()})
                         phone.value=PHONE
 
                         with ui.row():

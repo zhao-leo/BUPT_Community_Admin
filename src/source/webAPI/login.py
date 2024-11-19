@@ -12,6 +12,6 @@ def update_password(url,code,recode):
     return Request('PUT',url,data)
 
 # 添加管理员
-def add_admin(url,account,code):
-    data = {'manager_account': account, 'manager_code': code}
+def add_admin(url,account,code,super):
+    data = {'manager_account': account, 'manager_code': code,'manager_role':super}
     return Request('POST',url,data)

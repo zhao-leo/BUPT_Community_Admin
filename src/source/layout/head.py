@@ -64,8 +64,9 @@ def header():
 # ---------------------------------- dialog for add manager ---------------------------------- #
     with ui.dialog() as dialog3,ui.card(): # 添加管理员
 
-        def handleNewUser(url,account,code):
-            res=add_admin(url,account,code)
+        def handleNewUser(url,account,code,super):
+            print(account,code,super)
+            res=add_admin(url,account,code,super)
             if res['code']==200: # 如果返回的code为200,表示修改成功,关闭弹窗并跳转到首页
                 ui.notify(res["message"],position='top',type='info')
                 ui.navigate.to('/home')
@@ -73,11 +74,11 @@ def header():
                 ui.notify(res["message"],position='top',type='warning',close_button='确定')
 
         account = ui.input(label='登录名')
-        code = ui.input(label='密码', password=True,password_toggle_button=True)
-
+        code = ui.input(label='密码', password=True, password_toggle_button=True, validation={'密码不得少于6位': lambda value: len(value) >= 6})
+        super_manager = ui.switch('是否为超级管理员')
         with ui.row():
             ui.button('取消',on_click=dialog3.close)
-            ui.button('提交', on_click=lambda:handleNewUser(addadmin(),account.value,code.value))
+            ui.button('提交', on_click=lambda:handleNewUser(addadmin(),account.value,code.value,super_manager.value))
 
 # ------------------------------------- logout function ------------------------------------- #
     with ui.header(elevated=True).classes('items-center justify-between').style('background-color: white;'):
