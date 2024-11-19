@@ -32,7 +32,12 @@ class ManagerPanel(PageLayout):
         def Reset_user(id):
             res =  rst_user(manager_rst(),id)
             if res.get('code') == 200:
-                ui.notify(res.get('message'),type='info',position='top')
+                ui.notify("密码已写入粘贴板",type='info',position='top')
+                username = res.get('data').get('manager_account')
+                pwd = res.get('data').get('manager_code')
+                clipbroad = f'''用户名：{username}
+密码：{pwd}'''
+                ui.clipboard.write(clipbroad)
                 list_ui.refresh()
             else:
                 ui.notify(res.get('message'),type='warning',position='top')
