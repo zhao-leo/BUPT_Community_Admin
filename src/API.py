@@ -57,4 +57,10 @@ def singleComplaint():
   return BASE_URL+'user/ComplaintHistoryWhich/'
 def singleSuggestion():
   return BASE_URL+'user/SuggestionHistoryWhich/'
+
+def suggPicupload():
+  return BASE_URL+'user/UpLoadSuggestionPicture/'
+
+def compPicupload():
+  return BASE_URL+'user/UpLoadComplaintPicture/'
   

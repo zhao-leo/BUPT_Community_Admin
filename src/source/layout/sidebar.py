@@ -30,7 +30,7 @@ def sidebar():
             ui.button('点击下载', on_click=lambda:download_excel(result.value))
 
     
-    with ui.left_drawer(bordered=True,fixed=False).props('width=170 bordered'):
+    with ui.left_drawer(bordered=True,fixed=True).props('width=170 bordered'):
         with ui.column().style("height:100%;width:auto;font-size:1.0rem"):
             ui.item('欢迎',on_click=lambda: ui.navigate.to('/home'))
 

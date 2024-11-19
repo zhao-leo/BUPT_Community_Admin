@@ -41,8 +41,8 @@ def get_picture(url):
     return Request('GET',url,{})
 
 # 上传图片
-def upload_pic(url,file:bytes):
-    files = {"cover_file":file}
+def upload_pic(url,file:bytes,extension_name):
+    files = {"cover_file":("cover_file.{}".format(extension_name),file,"image/{}".format(extension_name))}
     return FileUpload(url,files)
 
 # 删除图片

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-from .request import Request
+from .request import Request,FileUpload
 
 # 获取投诉列表
-def get_suggestion(url):
-    return Request('GET',url,{})
+def get_suggestion(url,pageinf:dict):
+    return Request('GET',url,pageinf)
 
 # 回复投诉
 def reply_suggestion(url,sugg_id,pim_id,content,way,name,tel,status=True):
@@ -27,3 +27,7 @@ def handle_suggestion_treat(url,id,summary):
         "sugg_summary": summary
     }
     return Request('PUT',f'{url}{id}/',data)
+
+def upload_pic(url,file:bytes,extension_name):
+    files = {"sugg_media":("sugg_media.{}".format(extension_name),file,"image/{}".format(extension_name))}
+    return FileUpload(url,files)

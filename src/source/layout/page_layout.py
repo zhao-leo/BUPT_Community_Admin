@@ -22,6 +22,8 @@ class PageLayout():
                 app.storage.user['ACCOUNT'] = data['data']['manager_account']
                 app.storage.user['PHONE'] = data['data']['manager_tele']
                 app.storage.user['role'] = data['data']['role']
+                app.storage.user['ID'] = data['data']['id']
+                #print(app.storage.user['ID'])
                 if data['data']['manager_name']==None:
                     ui.notify('请先完善个人信息', type='warning')
                     # --------------------------------- dialog for update personal information --------------------------------- #

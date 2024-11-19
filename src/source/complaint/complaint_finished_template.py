@@ -41,6 +41,15 @@ class ComplaintPage(PageLayout):
                                     ui.image(BASE_URL[:-1]+i['comp_media'])
                         ui.button('关闭').on_click(lambda:dialog.close())
                 dialog.open()
+            def preview2(res: list):
+                with ui.dialog() as dialog,ui.card().style('width:80vh;height:auto;'):
+                    if res!=None:
+                        with ui.carousel(animated=True, arrows=True, navigation=True).style('width: 60%;height:auto;align-self:center'):
+                            for i in res:
+                                with ui.carousel_slide().classes('p-0'):
+                                    ui.image(BASE_URL[:-1]+i['comp_handle_media'])
+                        ui.button('关闭').on_click(lambda:dialog.close())
+                dialog.open()
 
             columns = [
                 {'name': 'name', 'label': '类型', 'field': 'name', 'required': True, 'align': 'left'},
@@ -64,10 +73,13 @@ class ComplaintPage(PageLayout):
             with ui.card().style('width:100%'):
                 with ui.column().style("width:100%;flex-direction:column;align-self:flex-start;height:100%"):
                     table=ui.table(columns=columns, rows=rows, row_key='name').style('width:100%').style('font-size: 1.0rem;')
-                    if self.res['data'][0]["complaintmedia_set"]:
-                        with ui.row():
+                    with ui.row():
+                        if self.res['data'][0]["complaintmedia_set"]:
                             ui.label('附件图片：').style('font-size:1.4rem;height:30px;')
                             ui.button("点击查看",on_click=lambda:preview(self.res['data'][0]["complaintmedia_set"])).style('width:100px;')
+                        if self.res['data'][0]["complainthandlemedia_set"]:
+                            ui.label('回访图片：').style('font-size:1.4rem;height:30px;')
+                            ui.button("点击查看",on_click=lambda:preview2(self.res['data'][0]["complainthandlemedia_set"])).style('width:100px;')
                     ui.table(columns=columns,rows=row2,row_key='name').style('width:100%').style('font-size: 1.0rem;')
 
 def complaint_num_finished_ui(id):

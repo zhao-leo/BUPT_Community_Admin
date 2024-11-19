@@ -111,7 +111,9 @@ class CommunityPage(PageLayout):
                 
                 def handle_upload(e:events.UploadEventArguments):
                     file = e.content.read()
-                    res = upload_pic(picture(),file)
+                    extension_name = e.name
+                    #print(e.name)
+                    res = upload_pic(picture(),file,extension_name=extension_name)
                     if res.get('code') == 200:
                         ui.notify(res.get('message'),type='info',position='top')
                         coverUI.refresh()
@@ -135,7 +137,7 @@ class CommunityPage(PageLayout):
                 def preview(res: list):
                     with ui.dialog() as dialog,ui.card().style('width:80vh;height:auto;'):
                         if res!=None:
-                            with ui.carousel(animated=True, arrows=True, navigation=True).style('width: 60%;height:auto;align-self:center'):
+                            with ui.carousel(animated=True, arrows=True, navigation=True).style('width: 90%;height:auto;align-self:center'):
                                 for i in res:
                                     with ui.carousel_slide().classes('p-0'):
                                         ui.image(BASE_URL[:-1]+i['cover_file'])

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from API import replysuggestion,BASE_URL,suggestionhandle
-from nicegui import ui
-from source.webAPI.suggestion import suggestion_single,handle_suggestion_treat
+from API import replysuggestion,BASE_URL,suggestionhandle,suggPicupload
+from nicegui import ui,events
+from source.webAPI.suggestion import suggestion_single,handle_suggestion_treat,upload_pic
 
 from source.layout.page_layout import PageLayout
 
@@ -69,8 +69,17 @@ class SuggestionPage(PageLayout):
                             ui.label('附件图片：').style('font-size:1.4rem;height:30px;')
                             ui.button("点击查看",on_click=lambda:preview(self.res['data'][0]["suggestionmedia_set"])).style('width:100px;')
                     ui.table(columns=columns,rows=row2,row_key='name').style('width:100%').style('font-size: 1.0rem;')
+                    def handle_upload(e:events.UploadEventArguments):
+                        file = e.content.read()
+                        extension_name = e.name
+                        #print(e.name)
+                        res = upload_pic(suggPicupload()+str(self.id)+'/',file,extension_name=extension_name)
+                        if res.get('code') == 200:
+                            ui.notify(res.get('message'),type='info',position='top')
+                        else:
+                            ui.notify(res.get('message'),type='warning',position='top')
+                    ui.upload(label='上传图片',multiple=True,max_file_size=1024 * 1024 * 5,on_rejected=lambda :ui.notify('上传失败'),on_upload=handle_upload,auto_upload=True).props('accept=.png,.jpg,.jpeg')
                     x=ui.input("回访总结（可选）").style('margin-top:10px;').style('width:100%')
                     ui.button('提交',on_click=lambda: __handle_reply(self.id,x.value)).style('margin-top:10px;')
-
 def suggestion_num_treat_ui(id):
     SuggestionPage(id).show_layout()
