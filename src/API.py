@@ -63,4 +63,9 @@ def suggPicupload():
 
 def compPicupload():
   return BASE_URL+'user/UpLoadComplaintPicture/'
-  
+
+def manager_list():
+  return BASE_URL+'user/ManagerAll/'
+
+def manager_rst():
+  return BASE_URL+'user/ManagerReset/'

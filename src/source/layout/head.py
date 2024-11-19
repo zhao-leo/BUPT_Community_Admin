@@ -3,6 +3,7 @@ from nicegui import ui,app
 from source.webAPI.login import update_password,add_admin
 from source.webAPI.pim import update_pim
 from API import pimapi,addadmin
+import re
 
 # 定义logout函数,用于清除token
 def logout():
@@ -65,7 +66,7 @@ def header():
     with ui.dialog() as dialog3,ui.card(): # 添加管理员
 
         def handleNewUser(url,account,code,super):
-            print(account,code,super)
+            #print(account,code,super)
             res=add_admin(url,account,code,super)
             if res['code']==200: # 如果返回的code为200,表示修改成功,关闭弹窗并跳转到首页
                 ui.notify(res["message"],position='top',type='info')
@@ -73,7 +74,7 @@ def header():
             else: # 否则提示错误信息
                 ui.notify(res["message"],position='top',type='warning',close_button='确定')
 
-        account = ui.input(label='登录名')
+        account = ui.input(label='登录名',validation={'用户名只能包含英文字母': lambda value: re.match(r'^[a-zA-Z]+$', value) is not None})
         code = ui.input(label='密码', password=True, password_toggle_button=True, validation={'密码不得少于6位': lambda value: len(value) >= 6})
         super_manager = ui.switch('是否为超级管理员')
         with ui.row():

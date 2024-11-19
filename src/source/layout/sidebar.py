@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from nicegui import ui
+from nicegui import ui,app
 import json
 from datetime import datetime
 from source.webAPI.excel import get_excel
@@ -47,4 +47,8 @@ def sidebar():
             # if app.storage.user.get('ROLE')=='超级管理员':
             #     ui.item('社区管理',on_click=lambda: ui.navigate.to('/community'))
             ui.item('社区管理',on_click=lambda: ui.navigate.to('/community'))
+
+            if app.storage.user.get('role') == True:
+                ui.item('人员管理',on_click=lambda: ui.navigate.to('/userpanel'))
+
             ui.item('导出数据',on_click=lambda: dialog.open())

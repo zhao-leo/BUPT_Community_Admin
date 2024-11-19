@@ -24,6 +24,8 @@ from source.complaint.complaint_treated_template import complaint_num_treat_ui
 from source.complaint.complaint_finished import complaint_finished_ui
 from source.complaint.complaint_finished_template import complaint_num_finished_ui
 
+from source.userpanel.userpanel import userpanel_ui
+
 from source.community import community_ui
 
 import random
@@ -99,5 +101,9 @@ def index(id: int):
 @ui.page('/community')
 def index():
     community_ui()
+
+@ui.page('/userpanel')
+def index():
+    userpanel_ui()
 
 ui.run(port=9000,language='zh-CN',show_welcome_message=False,storage_secret=string,favicon=Icon(),title="您访问了一个不存在的页面")
