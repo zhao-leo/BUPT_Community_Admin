@@ -1,6 +1,6 @@
 {
   "terminal.integrated.env.windows": {
-  "BASE_URL": "https://api.example.com",
+  "BASE_URL": "https://api.kuangqiaodongjie.cn",
   "ICP_CODE": "京ICP备XXXXXXXXXX号",
   }
 }

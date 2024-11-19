@@ -49,7 +49,7 @@ class ComplaintPage(PageLayout):
                 {'name': '处理状态：', 'inf': '需要回访' if self.res['data'][0]['comp_treat'] else '不需要回访','slot': 'row_5'},
             ]
             row2 = [
-                {'name': '回复人：', 'inf': self.res['data'][0]['comp_staff_name']},
+                {'name': '回复人：', 'inf':  self.res['data'][0]['comp_staff_name']},
                 {'name': '回复电话：', 'inf': self.res['data'][0]['comp_staff_tele']},
                 {'name': '回复时间：', 'inf': self.res['data'][0]['comp_handle_time'][:10]},
                 {'name': '回复内容：', 'inf': self.res['data'][0]['comp_content']},

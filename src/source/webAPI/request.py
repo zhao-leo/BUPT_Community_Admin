@@ -31,6 +31,7 @@ def GetExcel(url:str, data: dict) -> requests.Response:
 def FileUpload(url:str, data: dict) -> dict:
     headers = {'Authorization': app.storage.user.get('TOKEN')}
     response = requests.post(url, headers=headers, files=data)
+    # print(response.text)
     try:
         res = response.json()
     except:

@@ -21,7 +21,7 @@ class PageLayout():
                 app.storage.user['NAME'] = data['data']['manager_name']
                 app.storage.user['ACCOUNT'] = data['data']['manager_account']
                 app.storage.user['PHONE'] = data['data']['manager_tele']
-                app.storage.user['ID'] = data['data']['id']
+                app.storage.user['role'] = data['data']['role']
                 if data['data']['manager_name']==None:
                     ui.notify('请先完善个人信息', type='warning')
                     # --------------------------------- dialog for update personal information --------------------------------- #
@@ -50,7 +50,7 @@ class PageLayout():
                         with ui.row():
                             ui.button('提交', on_click=lambda:handlepim(pimapi(),account1.value,name.value,phone.value))
                     dialog1.open()
-                if data['data']['id'] <= 3:
+                if data['data']['role'] ==  True:
                     app.storage.user['ROLE'] = '超级管理员'
                 else:
                     app.storage.user['ROLE'] = '管理员'
