@@ -65,8 +65,8 @@ class ComplaintPage(PageLayout):
                     with ui.row():
                         name=ui.input(label='回复人',validation={'人名不能为空': lambda value: len(value) >= 0})
                         tele=ui.input(label='联系电话',validation={'请正确填写电话号码': lambda value: value.isdigit()})
-                        name = app.storage.user.get('NAME')
-                        tele = app.storage.user.get('PHONE')
+                        name.value = app.storage.user.get('NAME')
+                        tele.value = app.storage.user.get('PHONE')
                         way=ui.input(label='解决方式',validation={'解决方式不能为空': lambda value: len(value) >= 0})
                     content=ui.textarea(label='回复内容',validation={'回复内容不能为空': lambda value: len(value) >= 0}).style('width:100%')
                     ui.button('提交',on_click=lambda: __handle_reply(self.id,content.value,way.value,name.value,tele.value))
