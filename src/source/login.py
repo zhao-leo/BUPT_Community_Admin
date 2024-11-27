@@ -31,4 +31,4 @@ def login_ui():
             ui.button('登录', on_click=lambda: loginui(username.value, password.value))
     with ui.footer().style('height: 50px;').style('background-color: rgb(0 0 0 / 0%);'):
         with ui.row().classes('w-full justify-center items-center'):
-            ui.link('京ICP-'+getenv('ICP_CODE'), getenv('ICP_URL')).style('font-size:1rem; margin-right: 2rem; font-color: black;')
+            ui.link(getenv('ICP_CODE'), "https://beian.miit.gov.cn/").style('font-size:1rem; margin-right: 2rem; font-color: black;')
