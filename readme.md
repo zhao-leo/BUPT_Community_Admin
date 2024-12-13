@@ -26,3 +26,13 @@ PS：
 ```
 ~/.venv/Lib/site-packages/nicegui/error.py
 ```
+
+build.bat
+```bat
+docker build -t registry.cn-hangzhou.aliyuncs.com/zhao-leo/pythonadmin:$version -f Dockerfile src/
+docker tag registry.cn-hangzhou.aliyuncs.com/zhao-leo/pythonadmin:$version registry.cn-hangzhou.aliyuncs.com/zhao-leo/pythonadmin:latest
+docker login --username=aliyun4438435934 registry.cn-hangzhou.aliyuncs.com
+
+docker push registry.cn-hangzhou.aliyuncs.com/zhao-leo/pythonadmin:$version
+docker push registry.cn-hangzhou.aliyuncs.com/zhao-leo/pythonadmin:latest
+```

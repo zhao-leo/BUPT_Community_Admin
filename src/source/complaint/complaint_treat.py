@@ -16,7 +16,7 @@ class ComplaintReplyPage(PageLayout):
         with ui.card().style('width:100%;height:auto'):
             with ui.row().style('width:100%;height:auto'):
                 ui.label('编号').style('width:2%;height:auto')
-                ui.label('投诉主题').style('width:12%;height:auto')
+                ui.label('投诉人').style('width:12%;height:auto')
                 ui.label('投诉摘要').style('width:24%;height:auto')
                 ui.label('投诉地点').style('width:24%;height:auto')
                 ui.label('投诉时间').style('width:20%;height:auto')
