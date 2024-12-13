@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from API import replysuggestion,BASE_URL
-from nicegui import ui,app
-from source.webAPI.suggestion import suggestion_single,reply_suggestion
+from API import replysuggestion,BASE_URL,suggPicupload
+from nicegui import ui,app,events
+from source.webAPI.suggestion import suggestion_single,reply_suggestion,upload_pic
 
 from source.layout.page_layout import PageLayout
 
@@ -69,6 +69,16 @@ class SuggestionPage(PageLayout):
                         name.value = app.storage.user.get('NAME')
                         tele.value = app.storage.user.get('PHONE')
                         way=ui.input(label='解决方式',validation={'解决方式不能为空': lambda value: len(value) >= 0})
+                    def handle_upload(e:events.UploadEventArguments):
+                        file = e.content.read()
+                        extension_name = e.name
+                        #print(e.name)
+                        res = upload_pic(suggPicupload()+str(self.id)+'/',file,extension_name=extension_name)
+                        if res.get('code') == 200:
+                            ui.notify(res.get('message'),type='info',position='top')
+                        else:
+                            ui.notify(res.get('message'),type='warning',position='top')
+                    ui.upload(label='上传图片',multiple=True,max_file_size=1024 * 1024 * 5,on_rejected=lambda :ui.notify('上传失败'),on_upload=handle_upload,auto_upload=True).props('accept=.png,.jpg,.jpeg')
                     content=ui.textarea(label='回复内容',validation={'回复内容不能为空': lambda value: len(value) >= 0}).style('width:100%')
                     ui.button('提交',on_click=lambda: __handle_reply(self.id,content.value,way.value,name.value,tele.value))
 

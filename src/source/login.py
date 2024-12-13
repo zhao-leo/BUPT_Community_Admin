@@ -4,6 +4,7 @@ from source.webAPI.login import login
 from source.webAPI.community import get_picture
 from API import loginapi,background,BASE_URL
 from os import getenv
+import re
 
 def loginui(username, password):
     res=login(loginapi(),username, password)
@@ -26,7 +27,7 @@ def login_ui():
             ui.label('欢迎使用社区反馈管理系统').style("width:auto;height:auto;align-self:center").style("font-size:2.0rem")
         ui.separator()
         with ui.card().style('background-color: rgb(255 255 255 / 0%);width:100%;').classes('no-shadow'):
-            username = ui.input(label='用户名', validation={'用户名不能为空': lambda value: len(value) >= 0}).style('font-size:1rem;width:100%;')
+            username = ui.input(label='用户名', validation={'用户名只能包含英文字母且不能为空': lambda value:( re.match(r'^[a-zA-Z]+$', value) is not None)}).style('font-size:1rem;width:100%;')
             password = ui.input(label='密码', password=True, password_toggle_button=True, validation={'密码不得少于6位': lambda value: len(value) >= 6}).style('font-size:1rem;width:100%;')
             ui.button('登录', on_click=lambda: loginui(username.value, password.value))
     with ui.footer().style('height: 50px;').style('background-color: rgb(0 0 0 / 0%);'):
