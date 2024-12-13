@@ -1,4 +1,4 @@
-FROM python:3.11-slim
+FROM hub.atomgit.com/amd64/python:3.11-slim
 
 ENV BASE_URL=http://api.example.com
 
