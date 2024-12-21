@@ -10,29 +10,10 @@
 
 其中main.py是主程序入口，直接运行main.py即可
 
-本项目同时提供docker镜像:
-```
-docker pull registry.cn-hangzhou.aliyuncs.com/zhao-leo/pythonadmin:latest
-```
-docker 中需要的环境变量 
-```
-BASE_URL = "https://api.example.com
-ICP_URL = 京ICP备-XXXXXXXX号
-```
-同时，内部网页服务的端口号是9000，记得根据需要自行映射
+**本项目不再提供docker镜像**
 
 PS：
 修改404界面需要对NiceGUI包进行修改！
 ```
 ~/.venv/Lib/site-packages/nicegui/error.py
-```
-
-build.bat
-```bat
-docker build -t registry.cn-hangzhou.aliyuncs.com/zhao-leo/pythonadmin:$version -f Dockerfile src/
-docker tag registry.cn-hangzhou.aliyuncs.com/zhao-leo/pythonadmin:$version registry.cn-hangzhou.aliyuncs.com/zhao-leo/pythonadmin:latest
-docker login --username=aliyun4438435934 registry.cn-hangzhou.aliyuncs.com
-
-docker push registry.cn-hangzhou.aliyuncs.com/zhao-leo/pythonadmin:$version
-docker push registry.cn-hangzhou.aliyuncs.com/zhao-leo/pythonadmin:latest
 ```
